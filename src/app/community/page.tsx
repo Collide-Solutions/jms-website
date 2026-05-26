@@ -1,0 +1,21 @@
+import { Leaf, MapPinned, Quote } from "lucide-react";
+import { CTA, PageHero, SectionTitle } from "@/components/SiteShell";
+import { Reveal } from "@/components/Motion";
+import { industrialImages } from "@/lib/data";
+
+export default function CommunityPage() {
+  const commitments = ["Tree Plantation Drives", "Water Recycling Systems", "Reduce Reuse Recycle", "Sustainability Policy", "Emission & Environmental Policy"];
+  const workflow = ["Techno Sales & Site Study", "Engineering Estimation", "Dedicated Project Management Team", "Creative Design Team & Calculations", "Value Engineering Study", "Eye On Detail Production Team", "Systematic Quality Control", "Safety Team", "Packing and Logistic Team", "Installation Team"];
+  return (
+    <>
+      <PageHero eyebrow="Community" title="Sustainability at the core." text="At JMS, we recognize that the future depends on the actions we take today." image={industrialImages[5]} />
+      <section className="section bg-[var(--soft)]"><div className="container"><SectionTitle eyebrow="Green Commitments" title="Responsible practices for long-term value." /><div className="grid gap-5 md:grid-cols-5">{commitments.map((x) => <Reveal key={x} className="card p-6"><Leaf className="mb-10 text-[var(--blue)]" /><h3 className="font-black text-[var(--navy)]">{x}</h3></Reveal>)}</div></div></section>
+      <section className="section"><div className="container"><SectionTitle eyebrow="Join Us" title="Contractors, vendors, and careers." /><div className="grid gap-5 md:grid-cols-3">{["Contractor Registration", "Vendor Registration", "Careers"].map((x) => <form key={x} className="card space-y-4 p-6"><h3 className="text-xl font-black text-[var(--navy)]">{x}</h3><input className="w-full rounded-xl border border-[var(--border)] p-4" placeholder="Name" /><input className="w-full rounded-xl border border-[var(--border)] p-4" placeholder="Email" /><input className="w-full rounded-xl border border-[var(--border)] p-4" placeholder="Phone" /><button className="btn-primary w-full" type="button">Submit</button></form>)}</div></div></section>
+      <section className="section bg-[var(--soft)]"><div className="container grid gap-8 md:grid-cols-2 md:items-center"><div><SectionTitle eyebrow="Network" title="Pan India reach with global ambition." text="A distributed delivery network designed for national rollouts and future international expansion." /><MapPinned size={96} className="text-[var(--blue)]" /></div><div className="grid grid-cols-3 gap-3">{["North", "West", "South", "East", "Central", "Expansion"].map((x) => <div key={x} className="card p-6 text-center font-black text-[var(--navy)]">{x}</div>)}</div></div></section>
+      <section className="section"><div className="container"><SectionTitle eyebrow="Partners & Sectors" title="Retail clothing, automobile, and hospitality ecosystems." /><div className="grid gap-5 md:grid-cols-3">{["Retail Clothing", "Automobile", "Hospitality"].map((x, i) => <Reveal key={x} className="card overflow-hidden"><img src={industrialImages[i]} alt="" className="h-72 w-full object-cover" /><div className="p-6"><h3 className="text-2xl font-black text-[var(--navy)]">{x}</h3></div></Reveal>)}</div></div></section>
+      <section className="section bg-[var(--soft)]"><div className="container"><SectionTitle eyebrow="Testimonials" title="What people notice." /><div className="grid gap-5 md:grid-cols-3">{[["Beautiful swanky office", "Melwyn Dsouza"], ["Best company jms work for the best", "Mohd Arham"], ["Very good work", "Krrishanpushpa Chaurasiya"]].map(([q, a]) => <Reveal key={a} className="card p-7"><Quote className="mb-8 text-[var(--blue)]" /><p className="text-2xl font-black text-[var(--navy)]">&quot;{q}&quot;</p><p className="mt-5 text-sm font-bold text-slate-500">{a}</p></Reveal>)}</div></div></section>
+      <section className="section"><div className="container"><SectionTitle eyebrow="Workflow" title="Teams aligned from study to installation." /><div className="grid gap-4 md:grid-cols-5">{workflow.map((x, i) => <div key={x} className="rounded-2xl border border-[var(--border)] p-5"><span className="text-sm font-black text-[var(--blue)]">{String(i + 1).padStart(2, "0")}</span><h3 className="mt-8 font-black text-[var(--navy)]">{x}</h3></div>)}</div></div></section>
+      <CTA />
+    </>
+  );
+}

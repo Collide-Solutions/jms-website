@@ -1,26 +1,138 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --navy: #071b3b;
+  --navy-2: #0f2f67;
+  --blue: #2f6bff;
+  --ink: #101828;
+  --muted: #667085;
+  --soft: #f5f7fa;
+  --border: #e4e7ec;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: #ffffff;
+  color: var(--ink);
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+}
+
+::selection {
+  background: var(--blue);
+  color: white;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(7, 27, 59, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(7, 27, 59, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.eyebrow {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.section {
+  padding: 64px 20px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: white;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.card:hover {
+  border-color: rgba(47, 107, 255, 0.32);
+  box-shadow: 0 18px 45px rgba(7, 27, 59, 0.08);
+  transform: translateY(-4px);
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0 22px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+@media (max-width: 420px) {
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    padding-inline: 18px;
+  }
+
+  .eyebrow {
+    letter-spacing: 0.16em;
+  }
+}
+
+.btn-primary {
+  background: var(--navy);
+  color: white;
+}
+
+.btn-secondary {
+  border: 1px solid var(--navy);
+  color: var(--navy);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-2px);
+}
+
+.btn-secondary:hover {
+  background: var(--navy);
+  color: white;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-block: 96px;
+    padding-inline: 32px;
+  }
 }

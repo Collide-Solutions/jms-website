@@ -1,65 +1,81 @@
-import Image from "next/image";
+import { Factory, Ruler, ShieldCheck } from "lucide-react";
+import { Reveal } from "@/components/Motion";
+import { HomeHero } from "@/components/HomeHero";
+import { CTA, SectionTitle } from "@/components/SiteShell";
+import { capabilities, industrialImages, stats } from "@/lib/data";
+
+const projectCats = ["Retail Outlets", "Automobile Showrooms", "Hospitality", "Corporate Spaces", "Gas Stations"];
+const why = ["Pan India Network", "Single Window Execution", "Experienced Team", "In-House Manufacturing", "Fast Rollouts", "Premium Quality"];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <HomeHero featureImage={industrialImages[1]} />
+
+      <section className="section bg-[var(--soft)]">
+        <div className="container grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map(([value, label], index) => (
+            <Reveal key={label} delay={index * 0.05} className="card p-7">
+              <Factory className="mb-8 text-[var(--blue)]" />
+              <div className="text-4xl font-black text-[var(--navy)]">{value}</div>
+              <p className="mt-2 text-sm font-bold uppercase tracking-[0.14em] text-slate-500">{label}</p>
+            </Reveal>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <SectionTitle eyebrow="Capabilities" title="Manufacturing systems for national brand rollouts." text="A single-window delivery model covering identity, furniture, fixtures, facades, signage, and installation." />
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {capabilities.map(([title, text], index) => (
+              <Reveal key={title} delay={index * 0.04} className="card p-7">
+                <Ruler className="mb-10 text-[var(--blue)]" />
+                <h3 className="text-2xl font-black text-[var(--navy)]">{title}</h3>
+                <p className="mt-4 leading-7 text-slate-600">{text}</p>
+              </Reveal>
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="section bg-[var(--soft)]">
+        <div className="container">
+          <SectionTitle eyebrow="Process" title="From brief to handover with controlled precision." />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+            {["Consultation", "Design", "Engineering", "Manufacturing", "Installation", "Delivery"].map((step, index) => (
+              <Reveal key={step} className="relative rounded-2xl border border-[var(--border)] bg-white p-6">
+                <span className="text-sm font-black text-[var(--blue)]">0{index + 1}</span>
+                <h3 className="mt-12 text-xl font-black text-[var(--navy)]">{step}</h3>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <SectionTitle eyebrow="Featured Projects" title="Image-first work across retail categories." />
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+            {projectCats.map((cat, index) => (
+              <Reveal key={cat} className="group overflow-hidden rounded-2xl border border-[var(--border)] bg-white">
+                <img src={industrialImages[index % industrialImages.length]} alt={cat} className="h-80 w-full object-cover transition duration-500 group-hover:scale-105" />
+                <div className="p-5"><p className="text-sm font-black uppercase tracking-[0.16em] text-[var(--navy)]">{cat}</p></div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-[var(--soft)]">
+        <div className="container grid gap-10 md:grid-cols-[.9fr_1.1fr] md:items-start">
+          <SectionTitle eyebrow="Why JMS" title="Built for brands that need consistency at scale." />
+          <div className="grid gap-4 sm:grid-cols-2">
+            {why.map((item) => <Reveal key={item} className="card flex items-center gap-4 p-6"><ShieldCheck className="text-[var(--blue)]" /><span className="font-black text-[var(--navy)]">{item}</span></Reveal>)}
+          </div>
+        </div>
+      </section>
+      <CTA />
+    </>
   );
 }
