@@ -1,8 +1,9 @@
-import { Factory, Ruler, ShieldCheck } from "lucide-react";
+import { ArrowRight, Factory, Ruler, ShieldCheck } from "lucide-react";
 import { Reveal } from "@/components/Motion";
 import { HomeHero } from "@/components/HomeHero";
 import { CTA, SectionTitle } from "@/components/SiteShell";
 import { capabilities, industrialImages, stats } from "@/lib/data";
+import FAQ from "@/components/FAQ";
 
 const projectCats = ["Retail Outlets", "Automobile Showrooms", "Hospitality", "Corporate Spaces", "Gas Stations"];
 const why = ["Pan India Network", "Single Window Execution", "Experienced Team", "In-House Manufacturing", "Fast Rollouts", "Premium Quality"];
@@ -43,7 +44,7 @@ export default function Home() {
         <div className="container">
           <SectionTitle eyebrow="Process" title="From brief to handover with controlled precision." />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
-            {["Consultation", "Design", "Engineering", "Manufacturing", "Installation", "Delivery"].map((step, index) => (
+            {["Consultation", "Design", "Engineering", "Manufacturing","Delivery","Installation"].map((step, index) => (
               <Reveal key={step} className="relative rounded-2xl border border-[var(--border)] bg-white p-6">
                 <span className="text-sm font-black text-[var(--blue)]">0{index + 1}</span>
                 <h3 className="mt-12 text-xl font-black text-[var(--navy)]">{step}</h3>
@@ -75,6 +76,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <FAQ />
       <CTA />
     </>
   );

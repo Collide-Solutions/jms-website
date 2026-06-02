@@ -5,12 +5,12 @@ export const navItems = [
   ["Resources", "/resources"],
   ["Process", "/process"],
   ["CSR", "/csr"],
-  ["Blogs", "/blogs"],
+  ["PR", "/pr"],
   ["Reach Us", "/reach-us"],
 ] as const;
 
 export const stats = [
-  ["60,000+", "Sq. Ft Facility"],
+  ["1,00,000+", "Sq. Ft Facility"],
   ["200+", "Corporate Artisans"],
   ["100%", "In-House Production"],
   ["Pan India", "Delivery"],

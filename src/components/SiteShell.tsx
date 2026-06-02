@@ -2,10 +2,18 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Mail, MapPin, Menu, Phone, X } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Menu, Phone, X, Facebook, Instagram, Youtube, Plus, Minus } from "lucide-react";
 import { navItems } from "@/lib/data";
 
 const logoUrl = "https://www.jmsuniversal.com/wp-content/uploads/2023/02/jms-logo.png";
+
+function LinkedInIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+    </svg>
+  );
+}
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +25,7 @@ export function Header() {
           <img src={logoUrl} alt="JMS Universal Technologies" className="h-auto w-28 object-contain transition hover:scale-105 sm:w-40 lg:w-44 px-10" />
         </Link>
 
-        <nav className="hidden items-center gap-7 text-[12px] font-bold uppercase tracking-[0.16em] text-white/82 lg:flex">
+        <nav className="hidden items-center gap-7 text-[12px] font-bold uppercase tracking-[0.16em] text-white/92 lg:flex">
           {navItems.map(([label, href]) => (
             <Link key={href} href={href} className="transition hover:text-white">
               {label}
@@ -42,7 +50,7 @@ export function Header() {
 
       {isOpen && (
         <div className="border-t border-white/10 bg-[var(--navy)] px-4 py-5 lg:hidden">
-          <nav className="grid gap-2 text-sm font-extrabold uppercase tracking-[0.16em] text-white/86 sm:grid-cols-2">
+          <nav className="grid gap-2 text-sm font-extrabold uppercase tracking-[0.16em] text-white/92 sm:grid-cols-2">
             {navItems.map(([label, href]) => (
               <Link
                 key={href}
@@ -70,15 +78,22 @@ export function Header() {
 export function Footer() {
   return (
     <footer className="bg-[var(--navy)] text-white">
-      <div className="mx-auto grid max-w-[1400px] gap-10 px-5 py-14 sm:grid-cols-2 lg:grid-cols-[1.2fr_.8fr_.8fr_1.1fr] lg:px-8 lg:py-20">
+      <div className="mx-auto grid max-w-[1400px] gap-10 px-5 py-14 sm:grid-cols-2 lg:grid-cols-[1.2fr_.8fr_.8fr_1.2fr] lg:px-8 lg:py-20">
         <div className="sm:col-span-2 lg:col-span-1">
           <img src={logoUrl} alt="JMS Universal Technologies" className="h-auto w-36 object-contain sm:w-44" />
           <p className="mt-8 max-w-sm text-base leading-7 text-white/72">
             Turnkey retail execution, fabrication, fixtures, furniture, facade systems, and brand rollout solutions across India.
           </p>
-          <Link href="/reach-us" className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-[12px] font-extrabold uppercase tracking-[0.16em] text-[var(--navy)] transition hover:-translate-y-0.5">
+          <Link href="/reach-us" className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-[12px] font-extrabold uppercase tracking-[0.16em] text-[var(--navy)] transition hover:-translate-y-0.5">
             Contact Us <ArrowRight size={15} />
           </Link>
+          <div className="mt-4 flex items-start gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2.5">
+            <span className="mt-0.5 text-base leading-none">🇮🇳</span>
+            <div>
+              <p className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-white/50">PROUDLY MADE IN INDIA</p>
+              <p className="mt-0.5 text-xs leading-5 text-white/65">Manufacturing and executing retail projects nationwide through our in-house facilities.</p>
+            </div>
+          </div>
         </div>
 
         <div>
@@ -88,7 +103,7 @@ export function Footer() {
               ["Firm", "/firm"],
               ["Community", "/community"],
               ["CSR", "/csr"],
-              ["Blogs", "/blogs"],
+              ["PR", "/pr"],
               ["Reach Us", "/reach-us"],
             ].map(([label, href]) => (
               <li key={label}>
@@ -125,6 +140,46 @@ export function Footer() {
               info@jmsuniversal.com
             </p>
           </div>
+          <hr className="my-5 border-white/12" />
+          <h4 className="text-sm font-extrabold uppercase tracking-[0.2em] text-white/55">Follow Us</h4>
+          <div className="mt-4 flex gap-3">
+            <a
+              href="https://www.linkedin.com/company/jmsuniversal"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 text-white/78 transition hover:border-white hover:bg-white hover:text-[var(--navy)]"
+              aria-label="LinkedIn"
+            >
+              <LinkedInIcon size={18} />
+            </a>
+            <a
+              href="https://www.instagram.com/jmsuniversal"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 text-white/78 transition hover:border-white hover:bg-white hover:text-[var(--navy)]"
+              aria-label="Instagram"
+            >
+              <Instagram size={18} />
+            </a>
+            <a
+              href="https://www.facebook.com/jmsuniversal"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 text-white/78 transition hover:border-white hover:bg-white hover:text-[var(--navy)]"
+              aria-label="Facebook"
+            >
+              <Facebook size={18} />
+            </a>
+            <a
+              href="https://www.youtube.com/@jmsuniversal"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 text-white/78 transition hover:border-white hover:bg-white hover:text-[var(--navy)]"
+              aria-label="YouTube"
+            >
+              <Youtube size={18} />
+            </a>
+          </div>
           <Link href="/reach-us" className="mt-7 flex min-h-12 items-center justify-center rounded-full border border-white/35 px-5 text-[12px] font-extrabold uppercase tracking-[0.16em] text-white transition hover:bg-white hover:text-[var(--navy)]">
             Request an RFQ
           </Link>
@@ -132,7 +187,7 @@ export function Footer() {
       </div>
       <div className="border-t border-white/12 px-5 py-8">
         <div className="mx-auto flex max-w-[1400px] flex-col gap-4 text-sm text-white/62 md:flex-row md:items-center md:justify-between">
-          <p className="font-extrabold uppercase tracking-[0.18em] text-white/82 sm:tracking-[0.28em]">WE ENHANCE BRANDS WORLDWIDE</p>
+          <p className="font-extrabold uppercase tracking-[0.18em] text-white/82 sm:tracking-[0.28em]">WE BUILD RETAIL EXPERIENCES ACROSS INDIA</p>
           <p>© {new Date().getFullYear()} JMS Universal Technologies Pvt. Ltd.</p>
         </div>
       </div>
@@ -173,8 +228,11 @@ export function CTA() {
       <div className="mx-auto max-w-[1400px] rounded-2xl border border-[var(--border)] bg-white p-7 text-center shadow-sm sm:p-10 md:p-16">
         <p className="eyebrow">RFQ Desk</p>
         <h2 className="mx-auto mt-4 max-w-4xl text-3xl font-black uppercase leading-[0.98] text-[var(--navy)] sm:text-4xl md:text-6xl">
-          Let&apos;s build your next retail experience.
+          RFQ Desk
         </h2>
+        <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+          Let's build your next retail success.
+        </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link className="btn-primary" href="/reach-us">Submit RFQ</Link>
           <Link className="btn-secondary" href="/reach-us">Talk to Team</Link>

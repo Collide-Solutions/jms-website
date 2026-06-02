@@ -4,7 +4,7 @@ import { Reveal } from "@/components/Motion";
 import { industrialImages } from "@/lib/data";
 
 export default function ResourcesPage() {
-  const items = ["Insights", "Downloads", "Manufacturing standards", "PDFs", "Certifications", "Case studies", "Blogs"];
+  const items = ["Insights", "Downloads", "Manufacturing standards", "PDFs", "Certifications", "Case studies"];
   return (
     <>
       <PageHero eyebrow="Resources" title="Resource center" text="Standards, certifications, case studies, downloads, and operational insight for enterprise teams." image={industrialImages[2]} />
