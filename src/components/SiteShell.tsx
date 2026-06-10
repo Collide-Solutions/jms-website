@@ -196,11 +196,11 @@ export function PageHero({ eyebrow, title, text, image }: { eyebrow: string; tit
     <section className="grid-bg">
       <div className="mx-auto grid max-w-[1400px] gap-8 px-5 py-14 sm:py-18 md:grid-cols-[1.05fr_.95fr] md:items-end lg:px-8 lg:py-28">
         <div>
-          <p className="eyebrow text-[var(--blue)]">{eyebrow}</p>
-          <h1 className="mt-5 max-w-5xl text-5xl font-black uppercase leading-[0.92] tracking-normal text-[var(--blue)] sm:text-6xl md:text-8xl">
+          <p className="eyebrow text-[#112443]">{eyebrow}</p>
+          <h1 className="mt-5 max-w-5xl text-5xl font-black uppercase leading-[0.92] tracking-normal text-[#112443] sm:text-6xl md:text-8xl">
             {title}
           </h1>
-          <p className="mt-6 max-w-2xl text-base leading-7 text-[var(--navy)]/80 sm:text-lg sm:leading-8">{text}</p>
+          <p className="mt-6 max-w-2xl text-base leading-7 text-[#112443] sm:text-lg sm:leading-8">{text}</p>
         </div>
         {image && <img src={image} alt="" className="h-72 w-full rounded-2xl object-cover sm:h-[420px]" />}
       </div>

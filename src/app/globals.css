@@ -64,7 +64,7 @@ img {
 
 /* Eyebrow text */
 .eyebrow {
-  color: var(--blue);
+  color: #112443 !important;
   font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.22em;
@@ -79,7 +79,7 @@ img {
   display: inline-block;
   width: 24px;
   height: 2px;
-  background: var(--blue);
+  background: #112443;
   border-radius: 2px;
 }
 
@@ -181,11 +181,20 @@ img {
   background: transparent;
 }
 
+.btn-secondary.bg-white {
+  background: white !important;
+  border-color: transparent;
+}
+
 .btn-secondary:hover {
   background: var(--navy);
   color: white;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(7, 27, 59, 0.12);
+}
+
+.btn-secondary.bg-white:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
 }
 
 /* Active navigation indicator */

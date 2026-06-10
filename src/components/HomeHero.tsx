@@ -8,8 +8,8 @@ const heroVideoUrl = "https://res.cloudinary.com/dckcszto5/video/upload/v1779765
 
 export function HomeHero({ featureImage }: { featureImage: string }) {
   const [showVideo, setShowVideo] = useState(true);
-  const heroTextColor = showVideo ? "text-white" : "text-[var(--navy)]";
-  const bodyTextColor = showVideo ? "text-white/80" : "text-slate-600";
+  const heroTextColor = showVideo ? "text-white" : "text-[#112443]";
+  const bodyTextColor = showVideo ? "text-white/80" : "text-[#112443]";
 
   return (
     <section className={`grid-bg relative overflow-hidden ${showVideo ? "bg-[var(--navy)]" : "bg-white"}`}>
@@ -46,7 +46,7 @@ export function HomeHero({ featureImage }: { featureImage: string }) {
           <p className={`mt-6 max-w-2xl text-base leading-7 sm:mt-8 sm:text-lg sm:leading-8 ${bodyTextColor}`}>Turnkey retail fabrication, fixtures, facade systems, and brand execution solutions across India.</p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Link href="/reach-us" className="btn-primary">Request RFQ</Link>
-            <Link href="https://www.jmsuniversal.com/ecommerce-solutions" target="_blank" rel="noopener noreferrer" className={showVideo ? "btn-secondary border-white bg-white text-[var(--navy)] hover:bg-white/90 hover:text-[var(--navy)]" : "btn-secondary"}>Ecommerce Site</Link>
+            <Link href="https://www.jmsuniversal.com/ecommerce-solutions" target="_blank" rel="noopener noreferrer" className={showVideo ? "btn-secondary border-white bg-white text-[var(--navy)] hover:bg-white/90 hover:text-[var(--navy)]" : "btn-secondary bg-white text-[var(--navy)] hover:bg-white/90 hover:text-[var(--navy)] border-transparent"}>Ecommerce Site</Link>
           </div>
         </Reveal>
         <Reveal delay={0.12}>
