@@ -52,7 +52,7 @@ export const achievements = [
   ["5,000+", "Retail Showrooms"],
   ["1,500+", "Gas Stations"],
   ["4,000+", "Automobile Showrooms"],
-  ["1,000+", "Thousand sqft Facade Works"],
+  ["50,000+", "Sq. Mt. Facade Works"],
 ];
 
 export const facilities = [
@@ -69,7 +69,7 @@ export const facilities = [
 
 export const works = [
   "Automobile Furniture",
-  "Automobile Showroom Signs And Fit Outs",
+  "Automobile Showroom Signs & Fit Outs",
   "Banks Furniture Branding & Facades",
   "Gas Station RVIs",
   "Healthcare Furniture Branding & Facades",
@@ -77,7 +77,7 @@ export const works = [
   "Retail Outlet Facades",
   "Retail Outlet Fixtures",
   "Retail Outlet Furniture",
-  "Retail Outlet Sign",
+  "Retail Outlet Signage",
 ];
 
 export const insights = [
@@ -97,3 +97,23 @@ export const industrialImages = [
   "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=80",
   "https://images.unsplash.com/photo-1581093458791-9d42cc030e98?auto=format&fit=crop&w=1400&q=80",
 ];
+
+export const capacityItems = [
+  "Corporate Identity Execution",
+  "Retail & Commercial Furniture",
+  "Retail Fixtures & Displays",
+  "Facade & Storefront Design",
+];
+
+export const indiaRegions = [
+  "North India",
+  "South India",
+  "East India",
+  "West India",
+  "Central India",
+];
+
+export const contactInfo = {
+  email: "jatinshroff@jmsuniversal.com",
+  address: "Suite No. 1207–1208, Hubtown Solaris One, Andheri East, Opp. Telli Gully, Mumbai – 400069",
+};
