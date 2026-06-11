@@ -183,7 +183,7 @@ export function Footer() {
       </div>
       <div className="border-t border-white/12 px-5 py-8">
         <div className="mx-auto flex max-w-[1400px] flex-col gap-4 text-sm text-white/62 md:flex-row md:items-center md:justify-between">
-          <p className="font-extrabold uppercase tracking-[0.18em] text-white/82 sm:tracking-[0.28em]">WE BUILD RETAIL EXPERIENCES ACROSS INDIA</p>
+          <p className="font-extrabold uppercase tracking-[0.18em] text-white/82 sm:tracking-[0.28em]">WE ENHANCE BRANDS WORLDWIDE</p>
           <p>© {new Date().getFullYear()} JMS Universal Technologies Pvt. Ltd.</p>
         </div>
       </div>
