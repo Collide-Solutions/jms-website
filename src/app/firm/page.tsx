@@ -4,7 +4,7 @@ import { useState } from "react";
 import { CheckCircle2, Factory, Ruler, Wrench, Paintbrush, GlassWater, Printer, ShieldCheck, Building2, Sofa, Store, PanelsTopLeft, ArrowRight } from "lucide-react";
 import { CTA, PageHero, SectionTitle } from "@/components/SiteShell";
 import { Reveal } from "@/components/Motion";
-import { achievements, facilities, industrialImages, insights, leaders, works, capacityItems } from "@/lib/data";
+import { achievements, facilities, insights, leaders, works, capacityItems } from "@/lib/data";
 
 const facilityIcons = [
   Factory, Building2, Ruler, Wrench, ShieldCheck, Printer, GlassWater, Paintbrush, Store,
@@ -35,12 +35,12 @@ export default function FirmPage() {
 
   return (
     <>
-      <PageHero eyebrow="Firm" title="Who we are" text="Over a decade of turnkey retail execution and fabrication excellence." image={industrialImages[0]} />
+      <PageHero eyebrow="Firm" title="Who we are" text="Over a decade of turnkey retail execution and fabrication excellence." image="/HOME/FEATURED PROJECTS/CORPORATE SPACES/Corporate office Internal.jpg" />
       
       {/* Our Journey */}
       <section className="section">
         <div className="container grid gap-10 md:grid-cols-[.9fr_1.1fr] md:items-start">
-          <img src={industrialImages[3]} alt="" className="h-[620px] w-full rounded-2xl object-cover" />
+          <img src="/HOME/FEATURED PROJECTS/AUTOMOBILE SHOWROOMS/Renault.jpg" alt="" className="h-[620px] w-full rounded-2xl object-cover" />
           <Reveal>
             <p className="eyebrow">Our Journey</p>
             <div className="mt-5 space-y-5 text-lg leading-8 text-slate-650">
@@ -58,7 +58,27 @@ export default function FirmPage() {
         <div className="container">
           <SectionTitle eyebrow="Leadership" title="Driven by vision, led by experts." text="At JMS, our strength lies in our people. Visionary leadership and experienced teams turn ideas into impactful realities." />
           <div className="flex flex-wrap justify-center gap-5">
-            {leaders.map(([name, role]) => <Reveal key={name} className="card w-full overflow-hidden sm:flex-[0_0_calc((100%_-_20px)/2)] lg:flex-[0_0_calc((100%_-_60px)/4)]"><div className="h-64 bg-gradient-to-br from-slate-100 to-slate-300 grayscale transition hover:grayscale-0" /><div className="p-6"><h3 className="font-black text-[var(--navy)]">{name}</h3><p className="mt-2 text-sm text-slate-500">{role}</p></div></Reveal>)}
+            {leaders.map(([name, role]) => {
+              const photoMap: Record<string, string | null> = {
+                "Mr. Manmohan Singh Toor": "/FIRM/LEADERSHIP/Manmohan Singh Toor.jpg",
+                "Mr. Subramanian Venkata": "/FIRM/LEADERSHIP/Subramanian Venata.jpg",
+                "Mr. Jigar Kothari": "/FIRM/LEADERSHIP/Jiggar Kothari.png",
+                "Mr. Jatin Malhotra": "/FIRM/LEADERSHIP/Jatin Malhotra.jpeg",
+                "Mr. Jatin Sharof": "/FIRM/LEADERSHIP/Jatin Sharof.jpeg",
+                "Mr. Anil Nigam": null,
+                "Mr. Manoj": "/FIRM/LEADERSHIP/Manoj Aneja.jpeg",
+              };
+              const photo = photoMap[name];
+              return (
+                <Reveal key={name} className="card w-full overflow-hidden sm:flex-[0_0_calc((100%_-_20px)/2)] lg:flex-[0_0_calc((100%_-_60px)/4)]">
+                  {photo
+                    ? <img src={photo} alt={name} className="h-64 w-full object-cover object-top grayscale transition hover:grayscale-0" />
+                    : <div className="flex h-64 items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400 text-sm font-bold">Photo N/A</div>
+                  }
+                  <div className="p-6"><h3 className="font-black text-[var(--navy)]">{name}</h3><p className="mt-2 text-sm text-slate-500">{role}</p></div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -109,10 +129,21 @@ export default function FirmPage() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {facilities.map((f, i) => {
               const Icon = facilityIcons[i % facilityIcons.length];
+              const facilityImages: Record<string, string> = {
+                "Project Management": "/FIRM/Our Facilities/Project Management/project-management.jpg",
+                "In-House Design Teams": "/FIRM/Our Facilities/In-House Design Teams/in-house.jpg",
+                "Creative Joinery Unit": "/FIRM/Our Facilities/Creative Joinery Unit/creative-joinery.png",
+                "Metal Fabrication": "/FIRM/Our Facilities/Metal Fabrication/metal-fabrication.png",
+                "100% In-House Sign Fabrication": "/FIRM/Our Facilities/100 In-House Sign Fabrication/in-house-sign.jpg",
+                "Digital Printing Facility": "/FIRM/Our Facilities/Digital Printing Facility/digital-printing.jpg",
+                "Glass & Aluminum Fabrication": "/FIRM/Our Facilities/Glass & Aluminum Fabrication/glass-aluminum.jpg",
+                "Digital & Static Signage": "/FIRM/Our Facilities/Digital & Static Signage/Digital & Static Signage.jpg",
+                "Fixtures Manufacturing": "/FIRM/Our Facilities/Fixtures Manufacturing/fixtures-manufacturing.jpg",
+              };
               return (
                 <Reveal key={f} className="group card overflow-hidden">
                   <div className="h-48 overflow-hidden">
-                    <img src={industrialImages[i % industrialImages.length]} alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                    <img src={facilityImages[f] ?? ""} alt={f} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
                   </div>
                   <div className="p-6">
                     <Icon className="mb-4 text-[var(--blue)]" size={22} />
@@ -160,11 +191,24 @@ export default function FirmPage() {
 
           {/* Portfolio Grid */}
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filteredWorks.map((work, i) => (
+            {filteredWorks.map((work, i) => {
+              const workImages: Record<string, string> = {
+                "Automobile Furniture": "/FIRM/Our Works/Automobile Furniture/MP700004.jpg",
+                "Automobile Showroom Signs & Fit Outs": "/FIRM/Our Works/Automobile Showroom Signs & Fit Outs/Lexus.jpeg",
+                "Banks Furniture Branding & Facades": "/FIRM/Our Works/Banks Furniture Branding & Facades/axis-5.jpg",
+                "Gas Station RVIs": "/FIRM/Our Works/Gas Station RVIs/IOCL.jpg",
+                "Healthcare Furniture Branding & Facades": "/FIRM/Our Works/Healthcare Furniture Branding & Facades/Fortis.jpg",
+                "Hospitality Furniture Branding & Facades": "/FIRM/Our Works/Hospitality Furniture Branding & Facades/Ginger.jpg",
+                "Retail Outlet Facades": "/FIRM/Our Works/Retail Outlet Facades/Westside.jfif",
+                "Retail Outlet Fixtures": "/FIRM/Our Works/Retail Outlet Fixtures/Zudio.jpg",
+                "Retail Outlet Furniture": "/FIRM/Our Works/Retail Outlet Furniture/Picture1.jpg",
+                "Retail Outlet Signage": "/FIRM/Our Works/Retail Outlet Signage/1Q2A8102.jpg.jpeg",
+              };
+              return (
               <Reveal key={work} className="group card overflow-hidden">
                 <div className="relative h-64 overflow-hidden">
                   <img
-                    src={industrialImages[i % industrialImages.length]}
+                    src={workImages[work] ?? ""}
                     alt={work}
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
                   />
@@ -185,7 +229,8 @@ export default function FirmPage() {
                   </p>
                 </div>
               </Reveal>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

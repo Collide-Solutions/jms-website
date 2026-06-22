@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Leaf, MapPinned, Quote, Globe, Network, ArrowUpRight } from "lucide-react";
 import { CTA, PageHero, SectionTitle } from "@/components/SiteShell";
 import { Reveal } from "@/components/Motion";
-import { industrialImages, indiaRegions } from "@/lib/data";
+import { indiaRegions } from "@/lib/data";
 import MultiStepForm, { contractorSteps, vendorSteps, careerSteps } from "@/components/MultiStepForm";
 
 export default function CommunityPage() {
@@ -19,7 +19,7 @@ export default function CommunityPage() {
 
   return (
     <>
-      <PageHero eyebrow="Community" title="Sustainability at the core." text="At JMS, we recognize that the future depends on the actions we take today." image={industrialImages[5]} />
+      <PageHero eyebrow="Community" title="Sustainability at the core." text="At JMS, we recognize that the future depends on the actions we take today." image="/HOME/FEATURED PROJECTS/HOSPITALITY/Fortis.png" />
       
       {/* Green Commitments */}
       <section className="section bg-[var(--soft)]">
@@ -242,11 +242,15 @@ export default function CommunityPage() {
         <div className="container">
           <SectionTitle eyebrow="Partners & Sectors" title="Retail clothing, automobile, and hospitality ecosystems." />
           <div className="grid gap-5 md:grid-cols-3">
-            {["Retail Clothing", "Automobile", "Hospitality"].map((x, i) => (
-              <Reveal key={x} className="card overflow-hidden">
-                <img src={industrialImages[i]} alt="" className="h-72 w-full object-cover" />
+            {[
+              { label: "Retail Clothing", img: "/COMMUNITY/RETAIL CLOTHING/Westside 1.png" },
+              { label: "Automobile", img: "/COMMUNITY/AUTOMOBILE/Lexus.jpeg" },
+              { label: "Hospitality", img: "/COMMUNITY/HOSPITALITY/Ginger.jpg" },
+            ].map((x) => (
+              <Reveal key={x.label} className="card overflow-hidden">
+                <img src={x.img} alt={x.label} className="h-72 w-full object-cover" />
                 <div className="p-6">
-                  <h3 className="text-2xl font-black text-[var(--navy)]">{x}</h3>
+                  <h3 className="text-2xl font-black text-[var(--navy)]">{x.label}</h3>
                 </div>
               </Reveal>
             ))}

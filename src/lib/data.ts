@@ -95,7 +95,7 @@ export const industrialImages = [
   "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1400&q=80",
   "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1400&q=80",
   "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=80",
-  "https://images.unsplash.com/photo-1581093458791-9d42cc030e98?auto=format&fit=crop&w=1400&q=80",
+  "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=80",
 ];
 
 export const capacityItems = [

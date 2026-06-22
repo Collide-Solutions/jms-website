@@ -2,16 +2,22 @@ import { ArrowRight, Factory, Ruler, ShieldCheck } from "lucide-react";
 import { Reveal } from "@/components/Motion";
 import { HomeHero } from "@/components/HomeHero";
 import { CTA, SectionTitle } from "@/components/SiteShell";
-import { capabilities, industrialImages, stats } from "@/lib/data";
+import { capabilities, stats } from "@/lib/data";
 import FAQ from "@/components/FAQ";
 
-const projectCats = ["Retail Outlets", "Automobile Showrooms", "Hospitality", "Corporate Spaces", "Gas Stations"];
+const projectCats = [
+  { label: "Retail Outlets", img: "/HOME/FEATURED PROJECTS/RETAIL OUTLETS/Westside.jpg" },
+  { label: "Automobile Showrooms", img: "/HOME/FEATURED PROJECTS/AUTOMOBILE SHOWROOMS/Kia.jpg" },
+  { label: "Hospitality", img: "/HOME/FEATURED PROJECTS/HOSPITALITY/Ginger.jpg" },
+  { label: "Corporate Spaces", img: "/HOME/FEATURED PROJECTS/CORPORATE SPACES/Voltas.jpg" },
+  { label: "Gas Stations", img: "/HOME/FEATURED PROJECTS/GAS STATIONS/IOCL.jpg" },
+];
 const why = ["Pan India Network", "Single Window Execution", "Experienced Team", "In-House Manufacturing", "Fast Rollouts", "Premium Quality"];
 
 export default function Home() {
   return (
     <>
-      <HomeHero featureImage={industrialImages[1]} />
+      <HomeHero featureImage="/HOME/FEATURED PROJECTS/RETAIL OUTLETS/Westside.png" />
 
       <section className="section bg-[var(--soft)]">
         <div className="container grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -58,10 +64,10 @@ export default function Home() {
         <div className="container">
           <SectionTitle eyebrow="Featured Projects" title="Image-first work across retail categories." />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-            {projectCats.map((cat, index) => (
-              <Reveal key={cat} className="group overflow-hidden rounded-2xl border border-[var(--border)] bg-white">
-                <img src={industrialImages[index % industrialImages.length]} alt={cat} className="h-80 w-full object-cover transition duration-500 group-hover:scale-105" />
-                <div className="p-5"><p className="text-sm font-black uppercase tracking-[0.16em] text-[var(--navy)]">{cat}</p></div>
+            {projectCats.map((cat) => (
+              <Reveal key={cat.label} className="group overflow-hidden rounded-2xl border border-[var(--border)] bg-white">
+                <img src={cat.img} alt={cat.label} className="h-80 w-full object-cover transition duration-500 group-hover:scale-105" />
+                <div className="p-5"><p className="text-sm font-black uppercase tracking-[0.16em] text-[var(--navy)]">{cat.label}</p></div>
               </Reveal>
             ))}
           </div>
