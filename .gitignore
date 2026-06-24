@@ -22,3 +22,6 @@ yarn-error.log*
 
 # env
 .env*
+
+# large PDFs — serve via Cloudinary or similar in production
+public/*.pdf

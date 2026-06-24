@@ -2,9 +2,10 @@ import { PageHero } from "@/components/SiteShell";
 import { Reveal } from "@/components/Motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { blogs } from "@/lib/blogs";
+import { getBlogs } from "@/lib/wordpress";
 
-export default function PRPage() {
+export default async function PRPage() {
+  const blogs = await getBlogs();
   const [featured, ...rest] = blogs;
 
   return (
@@ -18,34 +19,36 @@ export default function PRPage() {
       <section className="section">
         <div className="container">
           {/* Featured post */}
-          <Reveal>
-            <Link href={`/pr/${featured.slug}`} className="group mb-10 grid overflow-hidden rounded-2xl border border-[var(--border)] bg-white shadow-[var(--shadow-card)] transition hover:shadow-[var(--shadow-elevated)] md:grid-cols-[1.2fr_1fr]">
-              <div className="overflow-hidden">
-                <img
-                  src={featured.image}
-                  alt={featured.title}
-                  className="h-72 w-full object-cover transition duration-500 group-hover:scale-105 md:h-full"
-                />
-              </div>
-              <div className="flex flex-col justify-center p-8 lg:p-12">
-                <span className="inline-block rounded-full bg-[#c8952a]/10 px-3 py-1 text-[11px] font-black uppercase tracking-[0.14em] text-[#c8952a]">
-                  {featured.category}
-                </span>
-                <h2 className="mt-4 text-2xl font-black leading-tight text-[var(--navy)] sm:text-3xl">
-                  {featured.title}
-                </h2>
-                <p className="mt-4 leading-7 text-slate-500">{featured.excerpt}</p>
-                <div className="mt-6 flex items-center justify-between">
-                  <p className="text-xs font-bold uppercase tracking-[0.12em] text-slate-400">
-                    {featured.author} &nbsp;·&nbsp; {featured.date}
-                  </p>
-                  <span className="inline-flex items-center gap-1 text-sm font-black text-[var(--navy)] transition group-hover:gap-2">
-                    Read more <ArrowRight size={14} />
-                  </span>
+          {featured && (
+            <Reveal>
+              <Link href={`/pr/${featured.slug}`} className="group mb-10 grid overflow-hidden rounded-2xl border border-[var(--border)] bg-white shadow-[var(--shadow-card)] transition hover:shadow-[var(--shadow-elevated)] md:grid-cols-[1.2fr_1fr]">
+                <div className="overflow-hidden">
+                  <img
+                    src={featured.image}
+                    alt={featured.title}
+                    className="h-72 w-full object-cover transition duration-500 group-hover:scale-105 md:h-full"
+                  />
                 </div>
-              </div>
-            </Link>
-          </Reveal>
+                <div className="flex flex-col justify-center p-8 lg:p-12">
+                  <span className="inline-block rounded-full bg-[#c8952a]/10 px-3 py-1 text-[11px] font-black uppercase tracking-[0.14em] text-[#c8952a]">
+                    {featured.category}
+                  </span>
+                  <h2 className="mt-4 text-2xl font-black leading-tight text-[var(--navy)] sm:text-3xl">
+                    {featured.title}
+                  </h2>
+                  <p className="mt-4 leading-7 text-slate-500">{featured.excerpt}</p>
+                  <div className="mt-6 flex items-center justify-between">
+                    <p className="text-xs font-bold uppercase tracking-[0.12em] text-slate-400">
+                      {featured.author} &nbsp;·&nbsp; {featured.date}
+                    </p>
+                    <span className="inline-flex items-center gap-1 text-sm font-black text-[var(--navy)] transition group-hover:gap-2">
+                      Read more <ArrowRight size={14} />
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </Reveal>
+          )}
 
           {/* Remaining posts */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

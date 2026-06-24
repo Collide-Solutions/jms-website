@@ -3,68 +3,23 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Plus, Minus, ArrowRight } from "lucide-react";
+import type { FaqItem } from "@/lib/wordpress";
 
-const faqData = [
-  {
-    question: "Do you manufacture retail fixtures in-house?",
-    answer:
-      "Yes. JMS operates its own dedicated manufacturing facilities for retail fixtures, modular furniture, signage, facade systems, and branding solutions. All fabrication, joinery, metalwork, printing, and assembly are completed in-house under strict quality control, ensuring consistency and faster turnaround across projects.",
-  },
-  {
-    question: "Can JMS handle multi-city retail rollouts?",
-    answer:
-      "Absolutely. JMS specializes in coordinated multi-city and multi-location retail rollouts. With centralized project management, standardized manufacturing processes, and a pan-India installation network, we ensure brand consistency and timely execution across all locations simultaneously.",
-  },
-  {
-    question: "What is the typical project execution timeline?",
-    answer:
-      "Timelines vary based on scope and scale. A standard single-store rollout typically takes 4-6 weeks from design finalization to installation. Large-scale multi-location projects are planned in phases with detailed milestone schedules. We provide a clear timeline during the proposal stage.",
-  },
-  {
-    question: "Do you provide facade and signage solutions?",
-    answer:
-      "Yes. JMS offers comprehensive facade systems including architectural cladding, glazing, storefronts, and external brand expressions, along with complete signage solutions such as illuminated signs, wayfinding systems, digital signage, and custom branding for both interior and exterior applications.",
-  },
-  {
-    question: "Which industries does JMS work with?",
-    answer:
-      "JMS serves retail brands, automotive showrooms, corporate offices, healthcare facilities, commercial spaces, hospitality, and any business requiring branded physical environments and standardized store rollouts.",
-  },
-  {
-    question: "Can JMS support nationwide installations?",
-    answer:
-      "Yes. JMS has a robust pan-India execution network that enables project delivery, installation, and on-site support across all major cities and regional markets. Our teams are equipped to handle projects anywhere in the country.",
-  },
-  {
-    question: "How do I submit an RFQ?",
-    answer:
-      "You can submit a Request for Quotation directly through our website via the RFQ Desk section, or contact our team through the Contact Us page. We typically respond within 24-48 hours with a detailed proposal covering scope, timeline, and pricing.",
-  },
-  {
-    question: "What makes JMS different from other retail execution companies?",
-    answer:
-      "JMS stands apart through our fully integrated in-house manufacturing capabilities, single-window execution model, pan-India reach, centralized quality control, and deep expertise across fixtures, furniture, facades, signage, and turnkey rollouts. We deliver brand consistency at scale without compromising on quality or timelines.",
-  },
-];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqData.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
-  })),
-};
-
-export default function FAQ() {
+export default function FAQ({ faqs }: { faqs: FaqItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggle = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
   };
 
   return (
@@ -76,7 +31,6 @@ export default function FAQ() {
       <section className="px-5 py-12 sm:py-16 lg:px-8" aria-label="Frequently Asked Questions">
         <div className="mx-auto max-w-[1400px]">
           <div className="grid gap-10 md:grid-cols-[0.4fr_0.6fr] md:items-start">
-            {/* Left Column */}
             <div className="md:sticky md:top-32">
               <p className="eyebrow">FAQ</p>
               <h2 className="mt-4 text-3xl font-black uppercase leading-[0.98] text-[var(--navy)] sm:text-4xl md:text-5xl">
@@ -93,9 +47,8 @@ export default function FAQ() {
               </Link>
             </div>
 
-            {/* Right Column - Accordion */}
             <div itemScope itemType="https://schema.org/FAQPage">
-              {faqData.map((item, index) => {
+              {faqs.map((item, index) => {
                 const isOpen = openIndex === index;
                 return (
                   <div
@@ -116,9 +69,7 @@ export default function FAQ() {
                       aria-controls={`faq-answer-${index}`}
                     >
                       <h3
-                        className={`text-sm font-bold leading-5 sm:text-base sm:leading-6 ${
-                          isOpen ? "text-[var(--navy)]" : "text-[var(--navy)]"
-                        }`}
+                        className="text-sm font-bold leading-5 sm:text-base sm:leading-6 text-[var(--navy)]"
                         itemProp="name"
                       >
                         {item.question}

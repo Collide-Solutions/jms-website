@@ -1,19 +1,20 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { blogs } from "@/lib/blogs";
+import { getBlogs, getBlogBySlug } from "@/lib/wordpress";
 import { Reveal } from "@/components/Motion";
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const blogs = await getBlogs();
   return blogs.map((b) => ({ slug: b.slug }));
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const blog = blogs.find((b) => b.slug === slug);
+  const [blog, allBlogs] = await Promise.all([getBlogBySlug(slug), getBlogs()]);
   if (!blog) notFound();
 
-  const others = blogs.filter((b) => b.slug !== slug);
+  const others = allBlogs.filter((b) => b.slug !== slug);
 
   return (
     <div className="min-h-screen bg-white">
@@ -85,10 +86,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="mt-14 rounded-2xl border border-[var(--border)] bg-[var(--soft)] p-8 text-center">
           <p className="text-lg font-black text-[var(--navy)]">Ready to start a project with JMS?</p>
           <p className="mt-2 text-sm leading-6 text-slate-500">Our team is ready to bring your vision to life — from design to installation.</p>
-          <Link
-            href="/reach-us"
-            className="btn-primary mt-6 inline-flex"
-          >
+          <Link href="/reach-us" className="btn-primary mt-6 inline-flex">
             Get in Touch <ArrowRight size={15} />
           </Link>
         </div>
