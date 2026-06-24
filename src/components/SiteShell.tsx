@@ -6,8 +6,8 @@ import { ArrowRight, Mail, MapPin, Menu, Phone, X, Facebook, Instagram, Youtube,
 import { navItems, industrialImages } from "@/lib/data";
 import MegaMenu from "@/components/MegaMenu";
 
-const logoUrl = "https://www.jmsuniversal.com/wp-content/uploads/2023/02/jms-logo.png";
-const makeUrl = "https://www.jmsuniversal.com/wp-content/uploads/2023/02/Made-In-India-Logo.png";
+const logoUrl = "/jms-logo.png";
+const makeUrl = "/made-in-india.png";
 
 function LinkedInIcon({ size = 18 }: { size?: number }) {
   return (
