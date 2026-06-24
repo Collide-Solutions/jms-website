@@ -3,7 +3,7 @@ export const navItems = [
   ["Firm", "/firm"],
   ["Community", "/community"],
   ["Resources", "/resources"],
-  ["Process", "/process"],
+  ["Process", "/work-process"],
   ["CSR", "/csr"],
   ["PR", "/pr"],
   ["Reach Us", "/reach-us"],

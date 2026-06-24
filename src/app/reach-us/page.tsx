@@ -31,7 +31,7 @@ export default async function ReachUsPage() {
             <div className="card p-7">
               <Building2 className="mb-6 text-[var(--blue)]" size={24} />
               <h3 className="text-2xl font-black text-[var(--navy)]">Mumbai Headquarters</h3>
-              <p className="mt-3 leading-7 text-slate-600">{data.contact_address}</p>
+              <p className="mt-3 whitespace-pre-line leading-7 text-slate-600">{data.contact_address}</p>
             </div>
             <div className="card p-7">
               <MapPin className="mb-6 text-[var(--blue)]" size={24} />

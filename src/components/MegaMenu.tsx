@@ -8,7 +8,7 @@ const menuItems = [
   { label: "Firm", href: "/firm", icon: Building2 },
   { label: "Community", href: "/community", icon: Users },
   { label: "Resources", href: "/resources", icon: BookOpen },
-  { label: "Process", href: "/process", icon: LayoutDashboard },
+  { label: "Process", href: "/work-process", icon: LayoutDashboard },
   { label: "CSR", href: "/csr", icon: Award },
   { label: "PR", href: "/pr", icon: BookOpen },
 ];
