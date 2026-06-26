@@ -1,4 +1,5 @@
 import { Factory, Ruler, ShieldCheck } from "lucide-react";
+import { AnimatedStatValue } from "@/components/AnimatedStatValue";
 import { Reveal } from "@/components/Motion";
 import { HomeHero } from "@/components/HomeHero";
 import { CTA, SectionTitle } from "@/components/SiteShell";
@@ -33,7 +34,7 @@ export default async function Home() {
           {stats.map(({ value, label }, index) => (
             <Reveal key={label} delay={index * 0.05} className="card p-7">
               <Factory className="mb-8 text-[var(--blue)]" />
-              <div className="text-4xl font-black text-[var(--navy)]">{value}</div>
+              <AnimatedStatValue value={value} className="block text-4xl font-black text-[var(--navy)]" />
               <p className="mt-2 text-sm font-bold uppercase tracking-[0.14em] text-slate-500">{label}</p>
             </Reveal>
           ))}

@@ -85,7 +85,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {/* CTA */}
         <div className="mt-14 rounded-2xl border border-[var(--border)] bg-[var(--soft)] p-8 text-center">
           <p className="text-lg font-black text-[var(--navy)]">Ready to start a project with JMS?</p>
-          <p className="mt-2 text-sm leading-6 text-slate-500">Our team is ready to bring your vision to life — from design to installation.</p>
+          <p className="mt-2 text-sm leading-6 text-slate-500">Our team is ready to bring your vision to life - from design to installation.</p>
           <Link href="/reach-us" className="btn-primary mt-6 inline-flex">
             Get in Touch <ArrowRight size={15} />
           </Link>

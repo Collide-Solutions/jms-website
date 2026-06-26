@@ -46,7 +46,7 @@ async function getPageAcf<T>(slug: string): Promise<T | null> {
 export type WpImage = { url: string; alt: string };
 
 // ─── HOME SETTINGS (from site_settings CPT, first post) ──────────────────
-// Free ACF has no repeater — lists come as newline-separated strings.
+// Free ACF has no repeater - lists come as newline-separated strings.
 // stats rows use pipe: "100000+|Sq. Ft Facility"
 // capabilities rows use pipe: "Corporate Identity|Description text"
 
@@ -63,7 +63,7 @@ export type HomePageData = {
   capabilities: string;
 };
 
-// Parsing helpers — used by consuming page components.
+// Parsing helpers - used by consuming page components.
 // WP textarea fields use \r\n line endings.
 export function parseLines(raw: string = ""): string[] {
   return raw.split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
@@ -75,7 +75,7 @@ export function parseStats(raw: string = ""): Array<{ value: string; label: stri
     return { value: value.trim(), label: label.trim() };
   });
 }
-// "title|description" per line — used for capabilities and capacity items
+// "title|description" per line - used for capabilities and capacity items
 export function parsePairs(raw: string = ""): Array<{ title: string; text: string }> {
   return parseLines(raw).map((row) => {
     const [title, text = ""] = row.split("|");
@@ -142,7 +142,7 @@ export async function getHomePageData(): Promise<HomePageData> {
 }
 
 // ─── FIRM SETTINGS (from site_settings CPT) ──────────────────────────────
-// Images return as integer IDs unless acf_format=standard — handled by getSiteSettings.
+// Images return as integer IDs unless acf_format=standard - handled by getSiteSettings.
 // journey_paragraphs: double-newline-separated paragraphs → parseParagraphs()
 // capacity_items, people_programs: "title|description" per line → parsePairs()
 // core_values, insights_jms: one item per line → parseLines()

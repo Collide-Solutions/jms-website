@@ -174,17 +174,17 @@ export const fallbackProcessCards: ProcessCard[] = [
 
 export const fallbackProcessPageData: ProcessPageData = {
   process_hero_title: "How we deliver excellence.",
-  process_hero_text: "A fully integrated approach — from first brief to final handover.",
+  process_hero_text: "A fully integrated approach - from first brief to final handover.",
   process_hero_image: { url: "/FIRM/Our Works/Retail Outlet Signage/1Q2A8102.jpg.jpeg", alt: "" },
 };
 
 export const fallbackResources = {
   brochures: [
-    { title: "Company Brochure", description: "Full overview of JMS Universal Technologies — capabilities, sectors, and reach.", pdf: "/Company-Brochure.pdf" },
+    { title: "Company Brochure", description: "Full overview of JMS Universal Technologies - capabilities, sectors, and reach.", pdf: "/Company-Brochure.pdf" },
     { title: "Factory Licence", description: "Certified factory licence authorising in-house manufacturing operations.", pdf: "/FACTORY-LICENCE_2024.pdf" },
     { title: "Product Catalogue", description: "Complete product catalogue across signage, fixtures, furniture, and facades.", pdf: "/Product-Catalogue.pdf" },
-    { title: "Automobile Brochure", description: "Leaders in automotive showroom solutions — fit-outs, signage, and fixtures.", pdf: "/JMS-Automobile-Brochure-.pdf" },
-    { title: "Facade Brochure", description: "Leaders in facade solutions — architectural cladding, glazing, and storefronts.", pdf: "/JMS-Facade-Brochure.pdf" },
+    { title: "Automobile Brochure", description: "Leaders in automotive showroom solutions - fit-outs, signage, and fixtures.", pdf: "/JMS-Automobile-Brochure-.pdf" },
+    { title: "Facade Brochure", description: "Leaders in facade solutions - architectural cladding, glazing, and storefronts.", pdf: "/JMS-Facade-Brochure.pdf" },
   ] as Resource[],
   certificates: [
     { title: "GST Certificate", description: "Goods & Services Tax registration certificate issued by the Government of India.", pdf: "/GST-CERTIFICATE.pdf" },
@@ -213,7 +213,7 @@ export const fallbackBlogs: Blog[] = [
     slug: "jms-facade-works",
     category: "Facade Works",
     title: "JMS Facade Works: Shaping Architectural Identities That Inspire",
-    excerpt: "A building's facade is its identity. It's the first thing people see — and the last impression they carry. JMS brings precision engineering and brand thinking together to create facades that define spaces.",
+    excerpt: "A building's facade is its identity. It's the first thing people see - and the last impression they carry. JMS brings precision engineering and brand thinking together to create facades that define spaces.",
     author: "admin",
     date: "August 4, 2025",
     image: "/FIRM/Our Works/Retail Outlet Facades/Westside 1.png",
@@ -231,16 +231,16 @@ export const fallbackBlogs: Blog[] = [
     slug: "jms-corporate-signage",
     category: "Corporate Signage",
     title: "JMS Corporate Signage: Building Brands That Speak Without Words",
-    excerpt: "In today's fast-paced corporate world, your signage is more than a nameplate — it's your brand's voice. JMS designs and fabricates corporate signage that commands attention and communicates credibility.",
+    excerpt: "In today's fast-paced corporate world, your signage is more than a nameplate - it's your brand's voice. JMS designs and fabricates corporate signage that commands attention and communicates credibility.",
     author: "admin",
     date: "August 3, 2025",
     image: "/FIRM/Our Works/Retail Outlet Signage/1Q2A8102.jpg.jpeg",
     sections: [
-      { type: "paragraph", text: "In today's fast-paced corporate world, your signage is more than a nameplate — it's your brand's first impression." },
+      { type: "paragraph", text: "In today's fast-paced corporate world, your signage is more than a nameplate - it's your brand's first impression." },
       { type: "heading", text: "Why Corporate Signage Matters" },
       { type: "paragraph", text: "Corporate signage is your silent brand ambassador. It tells visitors who you are before they even step inside." },
       { type: "heading", text: "Our Expertise" },
-      { type: "bullets", items: ["External Facade Signage: High-impact, weather-resistant designs for corporate buildings.", "Internal Branding & Wayfinding: Elegant reception signs, directional systems, and safety signage.", "3D & Illuminated Signs: For brands that need to stand out — day and night."] },
+      { type: "bullets", items: ["External Facade Signage: High-impact, weather-resistant designs for corporate buildings.", "Internal Branding & Wayfinding: Elegant reception signs, directional systems, and safety signage.", "3D & Illuminated Signs: For brands that need to stand out - day and night."] },
     ],
   },
   {
@@ -252,7 +252,7 @@ export const fallbackBlogs: Blog[] = [
     date: "August 2, 2025",
     image: "/FIRM/Our Works/Retail Outlet Furniture/Picture1.jpg",
     sections: [
-      { type: "paragraph", text: "In today's competitive retail landscape, customer experience is everything. A well-designed store does more than display products — it creates an atmosphere that inspires customers." },
+      { type: "paragraph", text: "In today's competitive retail landscape, customer experience is everything. A well-designed store does more than display products - it creates an atmosphere that inspires customers." },
       { type: "heading", text: "Why Retail Furniture Matters" },
       { type: "paragraph", text: "Retail furniture is more than fixtures and fittings; it's about storytelling through design." },
       { type: "heading", text: "Our Expertise" },
@@ -263,12 +263,12 @@ export const fallbackBlogs: Blog[] = [
     slug: "jms-retail-store-fixtures",
     category: "Retail Store Fixtures",
     title: "JMS Retail Store Fixtures: Creating Spaces That Sell",
-    excerpt: "In retail, your store isn't just a place — it's an experience. JMS engineers fixtures that are built for high-traffic environments, designed to showcase products and reinforce your brand identity.",
+    excerpt: "In retail, your store isn't just a place - it's an experience. JMS engineers fixtures that are built for high-traffic environments, designed to showcase products and reinforce your brand identity.",
     author: "admin",
     date: "August 1, 2025",
     image: "/FIRM/Our Works/Retail Outlet Fixtures/Zudio.jpg",
     sections: [
-      { type: "paragraph", text: "In retail, your store isn't just a place — it's an experience. Every fixture, display, and layout decision influences how customers interact with your brand and products." },
+      { type: "paragraph", text: "In retail, your store isn't just a place - it's an experience. Every fixture, display, and layout decision influences how customers interact with your brand and products." },
       { type: "heading", text: "Why Store Fixtures Matter" },
       { type: "bullets", items: ["Enhance product visibility and accessibility.", "Improve customer flow through strategic placement.", "Reflect brand personality, making the store feel truly unique."] },
       { type: "heading", text: "Our Expertise" },

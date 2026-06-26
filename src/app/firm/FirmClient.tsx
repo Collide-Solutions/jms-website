@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { CheckCircle2, Factory, Ruler, Wrench, Paintbrush, GlassWater, Printer, ShieldCheck, Building2, Sofa, Store, PanelsTopLeft, ArrowRight } from "lucide-react";
 import { CTA, PageHero, SectionTitle } from "@/components/SiteShell";
+import { AnimatedStatValue } from "@/components/AnimatedStatValue";
 import { Reveal } from "@/components/Motion";
 import type { Leader, Achievement, Facility, Work } from "@/lib/wordpress";
 
@@ -109,7 +110,7 @@ export default function FirmClient({
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {achievements.map(({ value, label }, index) => (
               <Reveal key={label} delay={index * 0.05} className="card p-8 text-center">
-                <div className="text-5xl font-black text-[var(--navy)]">{value}</div>
+                <AnimatedStatValue value={value} className="block text-5xl font-black text-[var(--navy)]" />
                 <p className="mt-4 text-sm font-bold uppercase tracking-[0.14em] text-slate-500">{label}</p>
               </Reveal>
             ))}
@@ -139,7 +140,7 @@ export default function FirmClient({
       {/* Facilities */}
       <section className="section">
         <div className="container">
-          <SectionTitle eyebrow="Our Facilities" title="A manufacturing ecosystem built in-house." text="Integrated infrastructure covering every stage of retail execution — from design to fabrication to final installation." />
+          <SectionTitle eyebrow="Our Facilities" title="A manufacturing ecosystem built in-house." text="Integrated infrastructure covering every stage of retail execution - from design to fabrication to final installation." />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {facilities.map(({ name, description, image }, i) => {
               const Icon = facilityIcons[i % facilityIcons.length];

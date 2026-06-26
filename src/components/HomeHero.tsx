@@ -52,8 +52,7 @@ export function HomeHero({ featureImage, heroTitle, heroSubtitle, badgeLine1, ba
           <h1 className={`mt-5 text-5xl font-black uppercase leading-[0.9] sm:text-6xl md:text-8xl lg:text-9xl ${heroTextColor}`}>{heroTitle}</h1>
           <p className={`mt-6 max-w-2xl text-base leading-7 sm:mt-8 sm:text-lg sm:leading-8 ${bodyTextColor}`}>{heroSubtitle}</p>
           <div className="mt-9 flex flex-wrap gap-3">
-            <Link href="/reach-us" className="btn-primary">Request RFQ</Link>
-            <Link href="https://www.jmsuniversal.com/ecommerce-solutions" target="_blank" rel="noopener noreferrer" className={showVideo ? "btn-secondary border-white bg-white text-[var(--navy)] hover:bg-white/90 hover:text-[var(--navy)]" : "btn-secondary bg-white text-[var(--navy)] hover:bg-white/90 hover:text-[var(--navy)] border-transparent"}>Ecommerce Site</Link>
+            <Link href="#" className="btn-primary">Ecommerce Site - <i>Comming Soon</i></Link>
           </div>
         </Reveal>
         <Reveal delay={0.12}>

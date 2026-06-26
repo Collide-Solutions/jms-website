@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Leaf, MapPinned, Quote, Globe, Network, ArrowUpRight } from "lucide-react";
 import { CTA, PageHero, SectionTitle } from "@/components/SiteShell";
+import { AnimatedStatValue } from "@/components/AnimatedStatValue";
 import { Reveal } from "@/components/Motion";
 import MultiStepForm, { contractorSteps, vendorSteps, careerSteps } from "@/components/MultiStepForm";
 import type { Testimonial, PartnerSector } from "@/lib/wordpress";
@@ -156,7 +157,7 @@ export default function CommunityClient({
                 <Network size={24} className="mb-4 text-[var(--blue)]" />
                 <h3 className="text-2xl font-black text-[var(--navy)]">Nationwide Reach</h3>
                 <p className="mt-3 leading-7 text-slate-600">
-                  JMS operates across all five regions of India — North, South, East, West, and Central — ensuring consistent retail execution, installation, and after-sales support no matter where your brand needs to be.
+                  JMS operates across all five regions of India - North, South, East, West, and Central - ensuring consistent retail execution, installation, and after-sales support no matter where your brand needs to be.
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -201,7 +202,7 @@ export default function CommunityClient({
                 <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
                   {globalStats.map((stat) => (
                     <div key={stat.label} className="rounded-xl border border-[var(--border)] bg-white p-4 text-center">
-                      <div className="text-2xl font-black text-[var(--blue)]">{stat.value}</div>
+                      <AnimatedStatValue value={stat.value} className="block text-2xl font-black text-[var(--blue)]" />
                       <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">{stat.label}</p>
                     </div>
                   ))}

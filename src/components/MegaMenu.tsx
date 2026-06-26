@@ -64,7 +64,7 @@ export default function MegaMenu({ isMobile, onNavClick }: { isMobile?: boolean;
         );
       })}
 
-      {/* Separator + Request a Quote for Desktop */}
+      {/* Separator + Contact Us for Desktop */}
       {!isMobile && (
         <>
           <span className="mx-2 text-white/30">|</span>
@@ -73,7 +73,7 @@ export default function MegaMenu({ isMobile, onNavClick }: { isMobile?: boolean;
             className="flex items-center gap-1.5 rounded-lg px-4 py-2 text-[12px] font-bold uppercase tracking-[0.16em] text-white transition hover:text-white/80"
           >
             <ArrowRight size={12} />
-            Request a Quote
+            Contact Us
           </Link>
         </>
       )}

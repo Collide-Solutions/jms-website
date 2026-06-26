@@ -21,7 +21,7 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[var(--navy)]/96 text-white backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-black/96 text-white backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4 sm:h-20 sm:px-5 lg:px-8">
         <Link href="/" className="flex items-center" aria-label="JMS Universal home">
           <img src={logoUrl} alt="JMS Universal Technologies" className="h-auto w-28 object-contain transition hover:scale-105 sm:w-40 lg:w-44 px-10" />
@@ -43,14 +43,14 @@ export function Header() {
       </div>
 
       {isOpen && (
-        <div className="border-t border-white/10 bg-[var(--navy)] px-4 py-5 lg:hidden">
+        <div className="border-t border-white/10 bg-black px-4 py-5 lg:hidden">
           <MegaMenu isMobile onNavClick={() => setIsOpen(false)} />
           <Link
             href="/reach-us"
             className="mt-4 flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-5 text-[12px] font-extrabold uppercase tracking-[0.16em] text-[var(--navy)]"
             onClick={() => setIsOpen(false)}
           >
-            Request an RFQ <ArrowRight size={15} />
+            Contact Us <ArrowRight size={15} />
           </Link>
         </div>
       )}
@@ -79,7 +79,7 @@ export function Footer() {
             <img src={makeUrl} alt="JMS Universal Technologies" className="h-auto w-36 object-contain sm:w-44" />
             <div>
               <p className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-white/50">PROUDLY MADE IN INDIA</p>
-              <p className="mt-0.5 text-xs leading-5 text-white/65">Manufacturing and executing retail projects nationwide through our in-house facilities.</p>
+              <p className="mt-0.5 text-xs leading-5 text-white/65">Manufacturing and executing retail projects nationwide through our <br></br> in house facilities.</p>
             </div>
           </div>
         </div>
@@ -92,7 +92,6 @@ export function Footer() {
               ["Community", "/community"],
               ["CSR", "/csr"],
               ["PR", "/pr"],
-              ["Reach Us", "/reach-us"],
             ].map(([label, href]) => (
               <li key={label}>
                 <Link className="transition hover:text-white" href={href}>
