@@ -6,11 +6,19 @@ import { Reveal } from "@/components/Motion";
 import type { Resource } from "@/lib/wordpress";
 
 function ResourceCard({ item, onView }: { item: Resource; onView: (item: Resource) => void }) {
+  const previewSrc = `${item.pdf}#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH`;
+
   return (
     <Reveal>
       <div className="group overflow-hidden rounded-2xl border border-[var(--border)] bg-white shadow-[var(--shadow-card)] transition hover:shadow-[var(--shadow-elevated)] hover:-translate-y-1">
-        <div className="flex h-44 items-center justify-center bg-[var(--soft)]">
-          <FileText size={56} className="text-[#c8952a] opacity-80 transition duration-300 group-hover:scale-110" />
+        <div className="relative h-44 overflow-hidden bg-[var(--soft)]">
+          <iframe
+            src={previewSrc}
+            title={`${item.title} preview`}
+            className="pointer-events-none h-full w-full border-0 bg-white"
+            loading="lazy"
+          />
+          <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/5" />
         </div>
         <div className="p-6">
           <h3 className="text-lg font-black text-[#c8952a]">{item.title}</h3>
