@@ -86,17 +86,25 @@ export default function FirmClient({
       </section>
 
       {/* Leadership */}
-      <section className="section bg-[var(--soft)]">
+      <section className="section glass-section">
         <div className="container">
           <SectionTitle eyebrow="Leadership" title={firm.firm_leadership_title} text={firm.firm_leadership_text} />
           <div className="flex flex-wrap justify-center gap-5">
             {leaders.map(({ name, role, photo }) => (
-              <Reveal key={name} className="card w-full overflow-hidden sm:flex-[0_0_calc((100%_-_20px)/2)] lg:flex-[0_0_calc((100%_-_60px)/4)]">
+              <Reveal key={name} className="card card-glass relative w-full overflow-hidden before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:z-10 before:h-px before:bg-white/90 after:pointer-events-none after:absolute after:inset-0 after:z-10 after:bg-gradient-to-br after:from-white/28 after:via-transparent after:to-white/10 sm:flex-[0_0_calc((100%_-_20px)/2)] lg:flex-[0_0_calc((100%_-_60px)/4)]">
                 {photo
-                  ? <img src={photo} alt={name} className="h-64 w-full object-cover object-top grayscale transition hover:grayscale-0" />
-                  : <div className="flex h-64 items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400 text-sm font-bold">Photo N/A</div>
+                  ? (
+                    <div className="relative h-72 overflow-hidden bg-white/25">
+                      <img
+                        src={photo}
+                        alt={name}
+                        className="h-full w-full object-cover object-top grayscale transition hover:grayscale-0"
+                      />
+                    </div>
+                  )
+                  : <div className="flex h-72 items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400 text-sm font-bold">Photo N/A</div>
                 }
-                <div className="p-6"><h3 className="font-black text-[var(--navy)]">{name}</h3><p className="mt-2 text-sm text-slate-500">{role}</p></div>
+                <div className="relative z-20 border-t border-white/60 bg-white/28 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] backdrop-blur-xl"><h3 className="font-black text-[var(--navy)]">{name}</h3><p className="mt-2 text-sm text-slate-600">{role}</p></div>
               </Reveal>
             ))}
           </div>

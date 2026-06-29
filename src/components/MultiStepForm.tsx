@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Check, ChevronRight, Upload, ArrowLeft, ArrowRight, Send, FileText, User, Building2, Phone, Mail, Briefcase, MapPin } from "lucide-react";
+import { Check, Upload, ArrowLeft, ArrowRight, Send, FileText, User, Building2, Phone, Briefcase, X } from "lucide-react";
 
 interface FormField {
   name: string;
@@ -24,6 +24,7 @@ interface MultiStepFormProps {
   steps: FormStep[];
   onSubmit: (data: Record<string, string | File[]>) => void;
   submitLabel?: string;
+  onClose?: () => void;
 }
 
 function StepIndicator({ current, total }: { current: number; total: number }) {
@@ -121,7 +122,7 @@ function FileUpload({ accept, multiple, onChange }: { accept?: string; multiple?
   );
 }
 
-export default function MultiStepForm({ title, steps, onSubmit, submitLabel = "Submit" }: MultiStepFormProps) {
+export default function MultiStepForm({ title, steps, onSubmit, submitLabel = "Submit", onClose }: MultiStepFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<Record<string, string | File[]>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -178,7 +179,17 @@ export default function MultiStepForm({ title, steps, onSubmit, submitLabel = "S
 
   if (submitted) {
     return (
-      <div className="card p-8 text-center md:p-12">
+      <div className="card relative p-8 text-center md:p-12">
+        {onClose && (
+          <button
+            type="button"
+            onClick={onClose}
+            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] text-slate-500 transition hover:bg-[var(--soft)] hover:text-[var(--navy)]"
+            aria-label="Close form"
+          >
+            <X size={18} />
+          </button>
+        )}
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
           <Check size={32} className="text-emerald-600" />
         </div>
@@ -200,14 +211,26 @@ export default function MultiStepForm({ title, steps, onSubmit, submitLabel = "S
 
   return (
     <div className="card p-6 md:p-8">
-      <div className="mb-6 flex items-center gap-3">
-        <StepIcon size={24} className="text-[var(--blue)]" />
-        <div>
-          <h3 className="text-xl font-black text-[var(--navy)]">{title}</h3>
-          <p className="text-sm text-slate-500">
-            Step {currentStep + 1} of {steps.length}
-          </p>
+      <div className="mb-6 flex items-start justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <StepIcon size={24} className="text-[var(--blue)]" />
+          <div>
+            <h3 className="text-xl font-black text-[var(--navy)]">{title}</h3>
+            <p className="text-sm text-slate-500">
+              Step {currentStep + 1} of {steps.length}
+            </p>
+          </div>
         </div>
+        {onClose && (
+          <button
+            type="button"
+            onClick={onClose}
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border)] text-slate-500 transition hover:bg-[var(--soft)] hover:text-[var(--navy)]"
+            aria-label="Close form"
+          >
+            <X size={18} />
+          </button>
+        )}
       </div>
 
       <StepIndicator current={currentStep} total={steps.length} />

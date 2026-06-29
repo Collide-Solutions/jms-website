@@ -88,17 +88,17 @@ export default function CommunityClient({
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {activeSection === "contractor" && (
               <div className="md:col-span-2 lg:col-span-3 max-w-2xl mx-auto w-full">
-                <MultiStepForm title="Contractor Registration" steps={contractorSteps} onSubmit={handleFormSubmit("Contractor")} submitLabel="Register as Contractor" />
+                <MultiStepForm title="Contractor Registration" steps={contractorSteps} onSubmit={handleFormSubmit("Contractor")} submitLabel="Register as Contractor" onClose={() => setActiveSection(null)} />
               </div>
             )}
             {activeSection === "vendor" && (
               <div className="md:col-span-2 lg:col-span-3 max-w-2xl mx-auto w-full">
-                <MultiStepForm title="Vendor Registration" steps={vendorSteps} onSubmit={handleFormSubmit("Vendor")} submitLabel="Register as Vendor" />
+                <MultiStepForm title="Vendor Registration" steps={vendorSteps} onSubmit={handleFormSubmit("Vendor")} submitLabel="Register as Vendor" onClose={() => setActiveSection(null)} />
               </div>
             )}
             {activeSection === "career" && (
               <div className="md:col-span-2 lg:col-span-3 max-w-2xl mx-auto w-full">
-                <MultiStepForm title="Join Our Team" steps={careerSteps} onSubmit={handleFormSubmit("Career")} submitLabel="Submit Application" />
+                <MultiStepForm title="Join Our Team" steps={careerSteps} onSubmit={handleFormSubmit("Career")} submitLabel="Submit Application" onClose={() => setActiveSection(null)} />
               </div>
             )}
 
