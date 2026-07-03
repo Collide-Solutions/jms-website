@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { CheckCircle2, Factory, Ruler, Wrench, Paintbrush, GlassWater, Printer, ShieldCheck, Building2, Sofa, Store, PanelsTopLeft, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { CheckCircle2, Factory, Ruler, Wrench, Paintbrush, GlassWater, Printer, ShieldCheck, Building2, Sofa, Store, PanelsTopLeft, ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { CTA, PageHero, SectionTitle } from "@/components/SiteShell";
 import { AnimatedStatValue } from "@/components/AnimatedStatValue";
 import { Reveal } from "@/components/Motion";
@@ -52,6 +52,17 @@ export default function FirmClient({
   capacityItems,
 }: Props) {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [activePhotoIndex, setActivePhotoIndex] = useState<number | null>(null);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [expandedRows, setExpandedRows] = useState<Record<number, boolean>>({});
+
+  const toggleRow = (rowIndex: number) => {
+    setExpandedRows((prev) => ({
+      ...prev,
+      [rowIndex]: !prev[rowIndex],
+    }));
+  };
 
   const workCategories = ["All", ...Array.from(new Set(works.map((w) => w.category)))];
 
@@ -59,6 +70,64 @@ export default function FirmClient({
     if (activeFilter === "All") return true;
     return w.category === activeFilter;
   });
+
+  const handlePrev = () => {
+    setActivePhotoIndex((prev) => {
+      if (prev === null) return null;
+      return prev === 0 ? filteredWorks.length - 1 : prev - 1;
+    });
+  };
+
+  const handleNext = () => {
+    setActivePhotoIndex((prev) => {
+      if (prev === null) return null;
+      return prev === filteredWorks.length - 1 ? 0 : prev + 1;
+    });
+  };
+
+  useEffect(() => {
+    if (activePhotoIndex === null) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") handlePrev();
+      if (e.key === "ArrowRight") handleNext();
+      if (e.key === "Escape") setActivePhotoIndex(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activePhotoIndex, filteredWorks.length]);
+
+  useEffect(() => {
+    if (activePhotoIndex !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [activePhotoIndex]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+    if (isLeftSwipe) {
+      handleNext();
+    } else if (isRightSwipe) {
+      handlePrev();
+    }
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
 
   return (
     <>
@@ -172,13 +241,16 @@ export default function FirmClient({
       {/* Works Portfolio */}
       <section className="section bg-[var(--soft)]">
         <div className="container">
-          <SectionTitle eyebrow="Our Works" title="Dedicated project portfolio." text="Explore our completed projects across categories. Filter by sector to discover relevant case studies." />
+          <SectionTitle eyebrow="Our Works" title="Dedicated project portfolio." text="Explore our completed projects across categories. Filter by sector to discover relevant project showcases." />
 
           <div className="mb-8 flex flex-wrap gap-2">
             {workCategories.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setActiveFilter(cat)}
+                onClick={() => {
+                  setActiveFilter(cat);
+                  setActivePhotoIndex(null);
+                }}
                 className={`rounded-full border px-5 py-2.5 text-[11px] font-extrabold uppercase tracking-[0.14em] transition ${
                   activeFilter === cat
                     ? "border-[var(--blue)] bg-[var(--blue)] text-white"
@@ -191,28 +263,33 @@ export default function FirmClient({
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filteredWorks.map((work) => (
-              <Reveal key={work.name} className="group card overflow-hidden">
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={work.image}
-                    alt={work.name}
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 flex items-end bg-gradient-to-t from-[var(--navy)]/80 via-transparent to-transparent p-5 opacity-0 transition duration-300 group-hover:opacity-100">
-                    <span className="inline-flex items-center gap-1 text-sm font-bold text-white">
-                      View Case Study <ArrowRight size={14} />
-                    </span>
+            {filteredWorks.map((work, index) => (
+              <Reveal
+                key={work.name}
+                className="overflow-hidden"
+              >
+                <div
+                  className="group card cursor-pointer"
+                  onClick={() => setActivePhotoIndex(index)}
+                >
+                  <div className="relative h-64 overflow-hidden">
+                    <img
+                      src={work.image}
+                      alt={work.name}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 flex items-end bg-gradient-to-t from-[var(--navy)]/80 via-transparent to-transparent p-5 opacity-0 transition duration-300 group-hover:opacity-100">
+                      <span className="inline-flex items-center gap-1 text-sm font-bold text-white">
+                        View Project <ArrowRight size={14} />
+                      </span>
+                    </div>
+                    <div className="absolute right-3 top-3 rounded-full bg-white/90 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.1em] text-[var(--navy)] shadow-sm backdrop-blur-sm">
+                      {work.category}
+                    </div>
                   </div>
-                  <div className="absolute right-3 top-3 rounded-full bg-white/90 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.1em] text-[var(--navy)] shadow-sm backdrop-blur-sm">
-                    {work.category}
+                  <div className="p-5">
+                    <h3 className="text-base font-black text-[var(--navy)]">{work.name}</h3>
                   </div>
-                </div>
-                <div className="p-5">
-                  <h3 className="text-base font-black text-[var(--navy)]">{work.name}</h3>
-                  <p className="mt-2 text-xs leading-5 text-slate-500">
-                    Project showcase available. Click to explore full case study details and imagery.
-                  </p>
                 </div>
               </Reveal>
             ))}
@@ -225,12 +302,39 @@ export default function FirmClient({
         <div className="container">
           <SectionTitle eyebrow="People" title="Training, safety, skills, and team wellbeing." />
           <div className="grid gap-3 md:grid-cols-3">
-            {peoplePrograms.map(({ title, text }) => (
-              <details key={title} className="rounded-2xl border border-[var(--border)] bg-white p-5">
-                <summary className="cursor-pointer font-black text-[var(--navy)]">{title}</summary>
-                <p className="mt-4 text-slate-600">{text}</p>
-              </details>
-            ))}
+            {peoplePrograms.map(({ title, text }, index) => {
+              const rowIndex = Math.floor(index / 3);
+              const isExpanded = !!expandedRows[rowIndex];
+              return (
+                <div
+                  key={title}
+                  className="rounded-2xl border border-[var(--border)] bg-white p-5 transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div>
+                    <button
+                      onClick={() => toggleRow(rowIndex)}
+                      className="flex w-full items-start gap-2.5 text-left font-black text-[var(--navy)] focus:outline-none group/summary cursor-pointer"
+                    >
+                      <span className={`mt-1 text-[10px] shrink-0 text-slate-400 transition-transform duration-300 ${isExpanded ? "rotate-90 text-[var(--blue)]" : ""}`}>
+                        ▶
+                      </span>
+                      <span className="hover:text-[var(--blue)] transition-colors duration-200">
+                        {title}
+                      </span>
+                    </button>
+                    <div
+                      className={`grid transition-all duration-500 ease-in-out ${
+                        isExpanded ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="text-slate-500 text-sm leading-6">{text}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -265,6 +369,80 @@ export default function FirmClient({
       </section>
 
       <CTA />
+
+      {/* Lightbox / Swiper Modal */}
+      {activePhotoIndex !== null && filteredWorks[activePhotoIndex] && (
+        <div
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/95 backdrop-blur-md text-white select-none transition-opacity duration-300"
+          onClick={() => setActivePhotoIndex(null)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {/* Close button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setActivePhotoIndex(null);
+            }}
+            className="absolute right-6 top-6 z-[110] rounded-full bg-white/10 p-3 text-white transition hover:bg-white/20 active:scale-95"
+            aria-label="Close lightbox"
+          >
+            <X size={24} />
+          </button>
+
+          {/* Navigation Controls */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handlePrev();
+            }}
+            className="absolute left-6 z-[110] rounded-full bg-white/10 p-4 text-white transition hover:bg-white/20 active:scale-95 max-sm:left-3"
+            aria-label="Previous image"
+          >
+            <ChevronLeft size={28} />
+          </button>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleNext();
+            }}
+            className="absolute right-6 z-[110] rounded-full bg-white/10 p-4 text-white transition hover:bg-white/20 active:scale-95 max-sm:right-3"
+            aria-label="Next image"
+          >
+            <ChevronRight size={28} />
+          </button>
+
+          {/* Image display */}
+          <div
+            className="relative flex h-[70vh] max-w-[90vw] items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={filteredWorks[activePhotoIndex].image}
+              alt={filteredWorks[activePhotoIndex].name}
+              className="h-full w-auto max-w-full rounded-xl object-contain shadow-2xl border border-white/10 bg-neutral-900/50"
+            />
+          </div>
+
+          {/* Info footer */}
+          <div
+            className="mt-6 text-center max-w-[90vw]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.1em] text-blue-400">
+              {filteredWorks[activePhotoIndex].category}
+            </span>
+            <h4 className="mt-2 text-xl font-bold max-sm:text-lg">
+              {filteredWorks[activePhotoIndex].name}
+            </h4>
+            <p className="mt-1 text-sm text-slate-400">
+              {activePhotoIndex + 1} of {filteredWorks.length}
+            </p>
+          </div>
+        </div>
+      )}
     </>
   );
 }

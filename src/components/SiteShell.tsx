@@ -125,6 +125,7 @@ export function Footer() {
               <Phone size={18} className="shrink-0 text-[var(--blue)]" />
               <div>
                 <p className="font-bold text-white/90">RFQ Desk / Project Enquiries</p>
+                <a href="tel:+919167490480" className="mt-0.5 block transition hover:text-white">+91 91674 90480</a>
               </div>
             </div>
             <div className="flex gap-3">
