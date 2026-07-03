@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import AssetPreloader from "@/components/AssetPreloader";
 import { Footer, Header } from "@/components/SiteShell";
 import "./globals.css";
 
@@ -24,8 +25,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={inter.variable}>
+        <AssetPreloader />
         <Header />
-        <main>{children}</main>
+        <main className="pt-16 sm:pt-20">{children}</main>
         <Footer />
       </body>
     </html>

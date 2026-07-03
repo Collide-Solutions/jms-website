@@ -22,7 +22,7 @@ interface FormStep {
 interface MultiStepFormProps {
   title: string;
   steps: FormStep[];
-  onSubmit: (data: Record<string, string | File[]>) => void;
+  onSubmit: (data: Record<string, string | File[]>) => Promise<void> | void;
   submitLabel?: string;
   onClose?: () => void;
 }
@@ -127,6 +127,8 @@ export default function MultiStepForm({ title, steps, onSubmit, submitLabel = "S
   const [formData, setFormData] = useState<Record<string, string | File[]>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const updateField = (name: string, value: string | File[]) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -145,7 +147,7 @@ export default function MultiStepForm({ title, steps, onSubmit, submitLabel = "S
 
     step.fields.forEach((field) => {
       const value = formData[field.name];
-      if (field.required && (!value || (typeof value === "string" && !value.trim()))) {
+      if (field.required && (!value || (typeof value === "string" && !value.trim()) || (Array.isArray(value) && value.length === 0))) {
         newErrors[field.name] = `${field.label} is required`;
       }
       if (field.type === "email" && typeof value === "string" && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
@@ -170,10 +172,18 @@ export default function MultiStepForm({ title, steps, onSubmit, submitLabel = "S
     if (currentStep > 0) setCurrentStep((prev) => prev - 1);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (validateStep()) {
-      onSubmit(formData);
-      setSubmitted(true);
+      setIsSubmitting(true);
+      setSubmitError("");
+      try {
+        await onSubmit(formData);
+        setSubmitted(true);
+      } catch (error) {
+        setSubmitError(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -339,15 +349,17 @@ export default function MultiStepForm({ title, steps, onSubmit, submitLabel = "S
 
         <button
           onClick={isLastStep ? handleSubmit : handleNext}
-          className="btn-primary flex items-center gap-2"
+          disabled={isSubmitting}
+          className="btn-primary flex items-center gap-2 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isLastStep ? (
-            <><Send size={16} /> {submitLabel}</>
+            <><Send size={16} /> {isSubmitting ? "Sending..." : submitLabel}</>
           ) : (
             <><span>Next</span> <ArrowRight size={16} /></>
           )}
         </button>
       </div>
+      {submitError && <p className="mt-4 rounded-xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-600">{submitError}</p>}
     </div>
   );
 }

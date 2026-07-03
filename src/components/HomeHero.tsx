@@ -22,7 +22,7 @@ export function HomeHero({ featureImage, heroTitle, heroSubtitle, badgeLine1, ba
     <section className={`grid-bg relative overflow-hidden ${showVideo ? "bg-[var(--navy)]" : "bg-white"}`}>
       {showVideo && (
         <video
-          className="pointer-events-none absolute inset-0 h-full w-full scale-[1.2] object-cover"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover sm:scale-[1.2]"
           src={videoUrl}
           autoPlay
           muted
@@ -32,7 +32,7 @@ export function HomeHero({ featureImage, heroTitle, heroSubtitle, badgeLine1, ba
           aria-hidden="true"
         />
       )}
-      <div className="absolute right-4 top-4 z-20 sm:right-6 sm:top-6">
+      <div className="absolute right-4 top-4 z-20 hidden sm:block sm:right-6 sm:top-6">
         <label className="flex cursor-pointer items-center gap-3 rounded-full border border-white/30 bg-[var(--navy)]/80 px-4 py-3 text-[11px] font-black uppercase tracking-[0.14em] text-white shadow-lg backdrop-blur">
           <input
             type="checkbox"
@@ -46,13 +46,13 @@ export function HomeHero({ featureImage, heroTitle, heroSubtitle, badgeLine1, ba
           BG {showVideo ? "On" : "Off"}
         </label>
       </div>
-      <div className="relative mx-auto grid min-h-[calc(100vh-64px)] max-w-[1400px] gap-10 px-5 py-12 sm:min-h-[calc(100vh-80px)] sm:py-16 md:grid-cols-[1fr_.9fr] md:items-center lg:px-8">
+      <div className="relative mx-auto grid min-h-[calc(100svh-64px)] max-w-[1400px] gap-8 px-5 py-8 sm:min-h-[calc(100vh-80px)] sm:gap-10 sm:py-16 md:grid-cols-[1fr_.9fr] md:items-center lg:px-8">
         <Reveal>
-          <p className="eyebrow text-sm font-black tracking-[0.28em] sm:text-base">JMS Universal Technologies Pvt. Ltd.</p>
-          <h1 className={`mt-5 text-5xl font-black uppercase leading-[0.9] sm:text-6xl md:text-8xl lg:text-9xl ${heroTextColor}`}>{heroTitle}</h1>
-          <p className={`mt-6 max-w-2xl text-base leading-7 sm:mt-8 sm:text-lg sm:leading-8 ${bodyTextColor}`}>{heroSubtitle}</p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <Link href="#" className="btn-primary">Ecommerce Site - <i>Coming Soon</i></Link>
+          <p className="eyebrow max-w-full text-[10px] font-black leading-5 tracking-[0.12em] sm:text-base sm:tracking-[0.28em]">JMS Universal Technologies Pvt. Ltd.</p>
+          <h1 className={`mt-5 max-w-full text-[2.08rem] font-black uppercase leading-[0.92] sm:text-6xl md:text-8xl lg:text-9xl ${heroTextColor}`}>{heroTitle}</h1>
+          <p className={`mt-5 max-w-2xl text-base leading-7 sm:mt-8 sm:text-lg sm:leading-8 ${bodyTextColor}`}>{heroSubtitle}</p>
+          <div className="mt-7 flex flex-wrap gap-3 sm:mt-9">
+            <Link href="#" className="btn-primary text-[10px] tracking-[0.08em] sm:text-[12px] sm:tracking-[0.16em]">Ecommerce Site - <i>Coming Soon</i></Link>
           </div>
         </Reveal>
         <Reveal delay={0.12}>

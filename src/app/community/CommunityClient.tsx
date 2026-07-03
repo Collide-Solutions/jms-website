@@ -37,8 +37,27 @@ export default function CommunityClient({
 }: Props) {
   const [activeSection, setActiveSection] = useState<"contractor" | "vendor" | "career" | null>(null);
 
-  const handleFormSubmit = (type: string) => (data: Record<string, string | File[]>) => {
-    console.log(`${type} submitted:`, data);
+  const handleFormSubmit = (formType: "contractor" | "vendor" | "career") => async (data: Record<string, string | File[]>) => {
+    const payload = new FormData();
+    payload.append("formType", formType);
+
+    Object.entries(data).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        value.forEach((file) => payload.append(key, file));
+        return;
+      }
+
+      payload.append(key, value);
+    });
+
+    const response = await fetch("/api/community-form", {
+      method: "POST",
+      body: payload,
+    });
+
+    if (!response.ok) {
+      throw new Error("We could not submit the form right now. Please try again.");
+    }
   };
 
   return (
@@ -88,17 +107,17 @@ export default function CommunityClient({
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {activeSection === "contractor" && (
               <div className="md:col-span-2 lg:col-span-3 max-w-2xl mx-auto w-full">
-                <MultiStepForm title="Contractor Registration" steps={contractorSteps} onSubmit={handleFormSubmit("Contractor")} submitLabel="Register as Contractor" onClose={() => setActiveSection(null)} />
+                <MultiStepForm title="Contractor Registration" steps={contractorSteps} onSubmit={handleFormSubmit("contractor")} submitLabel="Register as Contractor" onClose={() => setActiveSection(null)} />
               </div>
             )}
             {activeSection === "vendor" && (
               <div className="md:col-span-2 lg:col-span-3 max-w-2xl mx-auto w-full">
-                <MultiStepForm title="Vendor Registration" steps={vendorSteps} onSubmit={handleFormSubmit("Vendor")} submitLabel="Register as Vendor" onClose={() => setActiveSection(null)} />
+                <MultiStepForm title="Vendor Registration" steps={vendorSteps} onSubmit={handleFormSubmit("vendor")} submitLabel="Register as Vendor" onClose={() => setActiveSection(null)} />
               </div>
             )}
             {activeSection === "career" && (
               <div className="md:col-span-2 lg:col-span-3 max-w-2xl mx-auto w-full">
-                <MultiStepForm title="Join Our Team" steps={careerSteps} onSubmit={handleFormSubmit("Career")} submitLabel="Submit Application" onClose={() => setActiveSection(null)} />
+                <MultiStepForm title="Join Our Team" steps={careerSteps} onSubmit={handleFormSubmit("career")} submitLabel="Submit Application" onClose={() => setActiveSection(null)} />
               </div>
             )}
 

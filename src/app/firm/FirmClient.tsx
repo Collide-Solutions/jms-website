@@ -141,8 +141,7 @@ export default function FirmClient({
       {/* Our Journey */}
       <section className="section">
         <div className="container grid gap-10 md:grid-cols-[.9fr_1.1fr] md:items-start">
-          <img src={firm.firm_journey_image.url} alt="" className="h-[620px] w-full rounded-2xl object-cover" />
-          <Reveal>
+          <Reveal className="md:order-2">
             <p className="eyebrow">Our Journey</p>
             <div className="mt-5 space-y-5 text-lg leading-8 text-slate-650">
               {firm.firm_journey_paragraphs.map((paragraph, i) => (
@@ -151,6 +150,7 @@ export default function FirmClient({
               <p className="font-bold text-[var(--navy)]">~ Management ~</p>
             </div>
           </Reveal>
+          <img src={firm.firm_journey_image.url} alt="" className="aspect-square w-full rounded-2xl object-cover md:order-1 md:aspect-auto md:h-[620px]" />
         </div>
       </section>
 
@@ -160,20 +160,23 @@ export default function FirmClient({
           <SectionTitle eyebrow="Leadership" title={firm.firm_leadership_title} text={firm.firm_leadership_text} />
           <div className="flex flex-wrap justify-center gap-5">
             {leaders.map(({ name, role, photo }) => (
-              <Reveal key={name} className="card card-glass relative w-full overflow-hidden before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:z-10 before:h-px before:bg-white/90 after:pointer-events-none after:absolute after:inset-0 after:z-10 after:bg-gradient-to-br after:from-white/28 after:via-transparent after:to-white/10 sm:flex-[0_0_calc((100%_-_20px)/2)] lg:flex-[0_0_calc((100%_-_60px)/4)]">
+              <Reveal key={name} className="group card card-glass leadership-card relative w-full overflow-hidden before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:z-10 before:h-px before:bg-white/90 after:pointer-events-none after:absolute after:inset-0 after:z-10 after:bg-gradient-to-br after:from-white/18 after:via-transparent after:to-white/8 sm:flex-[0_0_calc((100%_-_20px)/2)] lg:flex-[0_0_calc((100%_-_60px)/4)]">
                 {photo
                   ? (
-                    <div className="relative h-72 overflow-hidden bg-white/25">
+                    <div className="relative h-[24.5rem] overflow-hidden bg-white/25">
                       <img
                         src={photo}
                         alt={name}
-                        className="h-full w-full object-cover object-top grayscale transition hover:grayscale-0"
+                        className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
                       />
                     </div>
                   )
-                  : <div className="flex h-72 items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400 text-sm font-bold">Photo N/A</div>
+                  : <div className="flex h-[24.5rem] items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400 text-sm font-bold">Photo N/A</div>
                 }
-                <div className="relative z-20 border-t border-white/60 bg-white/28 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] backdrop-blur-xl"><h3 className="font-black text-[var(--navy)]">{name}</h3><p className="mt-2 text-sm text-slate-600">{role}</p></div>
+                <div className="leadership-info absolute inset-x-0 bottom-0 z-20 p-6">
+                  <h3 className="font-black text-[var(--navy)]">{name}</h3>
+                  <p className="mt-2 text-sm font-semibold text-slate-700">{role}</p>
+                </div>
               </Reveal>
             ))}
           </div>

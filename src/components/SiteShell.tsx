@@ -21,10 +21,10 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-black/96 text-white backdrop-blur-xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/96 text-white backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4 sm:h-20 sm:px-5 lg:px-8">
         <Link href="/" className="flex items-center" aria-label="JMS Universal home">
-          <img src={logoUrl} alt="JMS Universal Technologies" className="h-auto w-28 object-contain transition hover:scale-105 sm:w-40 lg:w-44 px-10" />
+          <img src={logoUrl} alt="JMS Universal Technologies" className="h-11 w-auto object-contain transition hover:scale-105 sm:h-12 lg:h-14" />
         </Link>
 
         <div className="hidden lg:flex lg:items-center">
@@ -194,10 +194,10 @@ export function Footer() {
 export function PageHero({ eyebrow, title, text, image }: { eyebrow: string; title: string; text: string; image?: string }) {
   return (
     <section className="grid-bg">
-      <div className="mx-auto grid max-w-[1400px] gap-8 px-5 py-14 sm:py-18 md:grid-cols-[1.05fr_.95fr] md:items-end lg:px-8 lg:py-28">
-        <div>
-          <p className="eyebrow text-[#112443]">{eyebrow}</p>
-          <h1 className="mt-5 max-w-5xl text-5xl font-black uppercase leading-[0.92] tracking-normal text-[#112443] sm:text-6xl md:text-8xl">
+      <div className="mx-auto grid max-w-[1400px] gap-8 px-5 py-10 sm:py-18 md:grid-cols-[1.05fr_.95fr] md:items-end lg:px-8 lg:py-28">
+        <div className="min-w-0">
+          <p className="eyebrow max-w-full text-[10px] leading-5 tracking-[0.12em] text-[#112443] sm:text-xs sm:tracking-[0.22em]">{eyebrow}</p>
+          <h1 className="mt-5 max-w-5xl break-words text-[2.45rem] font-black uppercase leading-[0.94] tracking-normal text-[#112443] sm:text-6xl md:text-8xl">
             {title}
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-7 text-[#112443] sm:text-lg sm:leading-8">{text}</p>
