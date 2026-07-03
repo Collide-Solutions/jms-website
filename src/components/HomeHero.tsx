@@ -46,17 +46,17 @@ export function HomeHero({ featureImage, heroTitle, heroSubtitle, badgeLine1, ba
           BG {showVideo ? "On" : "Off"}
         </label>
       </div>
-      <div className="relative mx-auto grid min-h-[calc(100svh-64px)] max-w-[1400px] gap-8 px-5 py-8 sm:min-h-[calc(100vh-80px)] sm:gap-10 sm:py-16 md:grid-cols-[1fr_.9fr] md:items-center lg:px-8">
-        <Reveal>
-          <p className="eyebrow max-w-full text-[10px] font-black leading-5 tracking-[0.12em] sm:text-base sm:tracking-[0.28em]">JMS Universal Technologies Pvt. Ltd.</p>
-          <h1 className={`mt-5 max-w-full text-[2.08rem] font-black uppercase leading-[0.92] sm:text-6xl md:text-8xl lg:text-9xl ${heroTextColor}`}>{heroTitle}</h1>
-          <p className={`mt-5 max-w-2xl text-base leading-7 sm:mt-8 sm:text-lg sm:leading-8 ${bodyTextColor}`}>{heroSubtitle}</p>
-          <div className="mt-7 flex flex-wrap gap-3 sm:mt-9">
+      <div className="relative mx-auto grid min-h-[calc(100svh-64px)] max-w-[1400px] place-items-center gap-8 px-5 py-8 text-center sm:min-h-[calc(100vh-80px)] sm:gap-10 sm:py-16 md:grid-cols-[1fr_.9fr] md:items-center md:justify-items-stretch md:text-left lg:px-8">
+        <Reveal className="mx-auto max-w-2xl md:mx-0 md:max-w-none">
+          <p className="eyebrow mx-auto max-w-full text-[10px] font-black leading-5 tracking-[0.12em] sm:text-base sm:tracking-[0.28em] md:mx-0">JMS Universal Technologies Pvt. Ltd.</p>
+          <h1 className={`mt-5 max-w-full text-[2.55rem] font-black uppercase leading-[0.92] max-[360px]:text-[2.08rem] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl ${heroTextColor}`}>{heroTitle}</h1>
+          <p className={`mx-auto mt-5 max-w-2xl text-base leading-7 sm:mt-8 sm:text-lg sm:leading-8 md:mx-0 ${bodyTextColor}`}>{heroSubtitle}</p>
+          <div className="mt-7 flex flex-wrap justify-center gap-3 sm:mt-9 md:justify-start">
             <Link href="#" className="btn-primary text-[10px] tracking-[0.08em] sm:text-[12px] sm:tracking-[0.16em]">Ecommerce Site - <i>Coming Soon</i></Link>
           </div>
         </Reveal>
-        <Reveal delay={0.12}>
-          <div className="relative">
+        <Reveal delay={0.12} className="hidden md:block">
+          <div className="relative mx-auto w-[88%] sm:w-full md:ml-auto md:w-56 lg:w-64">
             <img src={featureImage} alt="Premium retail architecture and fabrication" className="h-80 w-full rounded-2xl object-cover sm:h-[460px] lg:h-[560px]" />
             <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/35 bg-white/88 p-4 backdrop-blur sm:bottom-5 sm:left-5 sm:right-5 sm:p-5">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--blue)] sm:text-sm">{badgeLine1}</p>
