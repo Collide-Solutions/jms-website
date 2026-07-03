@@ -52,7 +52,7 @@ export function HomeHero({ featureImage, heroTitle, heroSubtitle, badgeLine1, ba
           <h1 className={`mt-5 text-5xl font-black uppercase leading-[0.9] sm:text-6xl md:text-8xl lg:text-9xl ${heroTextColor}`}>{heroTitle}</h1>
           <p className={`mt-6 max-w-2xl text-base leading-7 sm:mt-8 sm:text-lg sm:leading-8 ${bodyTextColor}`}>{heroSubtitle}</p>
           <div className="mt-9 flex flex-wrap gap-3">
-            <Link href="#" className="btn-primary">Ecommerce Site - <i>Comming Soon</i></Link>
+            <Link href="#" className="btn-primary">Ecommerce Site - <i>Coming Soon</i></Link>
           </div>
         </Reveal>
         <Reveal delay={0.12}>
