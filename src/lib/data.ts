@@ -40,12 +40,16 @@ export const processSteps = [
 
 export const leaders = [
   ["Mr. Manmohan Singh Toor", "Managing Director"],
+  ["Harveen Toor", "Director"],
+  ["Gurveen Toor", "Executive Director"],
   ["Mr. Subramanian Venkata", "CEO"],
   ["Mr. Jigar Kothari", "Country Head"],
   ["Mr. Jatin Malhotra", "Finance Controller"],
-  ["Mr. Jatin Sharof", "Head - Business Development"],
-  ["Mr. Anil Nigam", "VP - Production"],
+  ["Mr. Jatin Sharoff", "Head - Business Development"],
   ["Mr. Manoj", "DGM - Productions"],
+  ["Mr. Santosh Chalke", "AGM - Automobiles"],
+  ["Mr. Sachin", "AGM - Retail projects & Others"],
+  ["Anil Sonu Ruke", "Head - Recce & Design"],
 ];
 
 export const achievements = [

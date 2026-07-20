@@ -52,12 +52,16 @@ export const fallbackHomePageData: HomePageData = {
 
 export const fallbackLeaders: Leader[] = [
   { name: "Mr. Manmohan Singh Toor", role: "Managing Director", photo: "/FIRM/LEADERSHIP/Manmohan Singh Toor.jpg" },
+  { name: "Harveen Toor", role: "Director", photo: null },
+  { name: "Gurveen Toor", role: "Executive Director", photo: null },
   { name: "Mr. Subramanian Venkata", role: "CEO", photo: "/FIRM/LEADERSHIP/Subramanian Venata.jpg" },
   { name: "Mr. Jigar Kothari", role: "Country Head", photo: "/FIRM/LEADERSHIP/Jiggar Kothari.png" },
   { name: "Mr. Jatin Malhotra", role: "Finance Controller", photo: "/FIRM/LEADERSHIP/Jatin Malhotra.jpeg" },
-  { name: "Mr. Jatin Sharof", role: "Head - Business Development", photo: "/FIRM/LEADERSHIP/Jatin Sharof.jpeg" },
-  { name: "Mr. Anil Nigam", role: "VP - Production", photo: null },
+  { name: "Mr. Jatin Sharoff", role: "Head - Business Development", photo: "/FIRM/LEADERSHIP/Jatin Sharof.jpeg" },
   { name: "Mr. Manoj", role: "DGM - Productions", photo: "/FIRM/LEADERSHIP/Manoj Aneja.jpeg" },
+  { name: "Mr. Santosh Chalke", role: "AGM - Automobiles", photo: null },
+  { name: "Mr. Sachin", role: "AGM - Retail projects & Others", photo: null },
+  { name: "Anil Sonu Ruke", role: "Head - Recce & Design", photo: null },
 ];
 
 export const fallbackAchievements: Achievement[] = [

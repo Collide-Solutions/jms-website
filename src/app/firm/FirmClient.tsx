@@ -15,6 +15,28 @@ const capacityIcons = [
   Building2, Sofa, Store, PanelsTopLeft,
 ];
 
+const leadershipSlotCount = 11;
+
+const leadershipOrder = [
+  "manmohan",
+  "harveen",
+  "gurveen",
+  "subramanian",
+  "jigar",
+  "jatin malhotra",
+  "jatin sharof",
+  "manoj",
+  "santosh",
+  "sachin",
+  "anil",
+];
+
+const getLeadershipOrder = (name: string) => {
+  const normalizedName = name.toLowerCase();
+  const index = leadershipOrder.findIndex((leaderName) => normalizedName.includes(leaderName));
+  return index === -1 ? leadershipOrder.length : index;
+};
+
 type FirmData = {
   firm_hero_title: string;
   firm_hero_text: string;
@@ -56,6 +78,35 @@ export default function FirmClient({
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const [expandedRows, setExpandedRows] = useState<Record<number, boolean>>({});
+
+  const orderedLeaders = leaders
+    .map((leader, originalIndex) => ({ leader, originalIndex }))
+    .sort(
+      (a, b) =>
+        getLeadershipOrder(a.leader.name) - getLeadershipOrder(b.leader.name) ||
+        a.originalIndex - b.originalIndex,
+    )
+    .map(({ leader }) => leader);
+
+  const displayedLeaders: Leader[] = [
+    ...orderedLeaders,
+    ...Array.from(
+      { length: Math.max(leadershipSlotCount - orderedLeaders.length, 0) },
+      () => ({
+        name: "Leadership Member",
+        role: "Details coming soon",
+        photo: null,
+      }),
+    ),
+  ];
+
+  const leadershipRows = [
+    displayedLeaders.slice(0, 3),
+    ...Array.from(
+      { length: Math.ceil(Math.max(displayedLeaders.length - 3, 0) / 4) },
+      (_, index) => displayedLeaders.slice(3 + index * 4, 7 + index * 4),
+    ),
+  ].filter((row) => row.length > 0);
 
   const toggleRow = (rowIndex: number) => {
     setExpandedRows((prev) => ({
@@ -158,26 +209,33 @@ export default function FirmClient({
       <section className="section glass-section">
         <div className="container">
           <SectionTitle eyebrow="Leadership" title={firm.firm_leadership_title} text={firm.firm_leadership_text} />
-          <div className="flex flex-wrap justify-center gap-5">
-            {leaders.map(({ name, role, photo }) => (
-              <Reveal key={name} className="group card card-glass leadership-card relative w-full overflow-hidden before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:z-10 before:h-px before:bg-white/90 after:pointer-events-none after:absolute after:inset-0 after:z-10 after:bg-gradient-to-br after:from-white/18 after:via-transparent after:to-white/8 sm:flex-[0_0_calc((100%_-_20px)/2)] lg:flex-[0_0_calc((100%_-_60px)/4)]">
-                {photo
-                  ? (
-                    <div className="relative h-[24.5rem] overflow-hidden bg-white/25">
-                      <img
-                        src={photo}
-                        alt={name}
-                        className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
-                      />
+          <div className="space-y-5">
+            {leadershipRows.map((row, rowIndex) => (
+              <div key={rowIndex} className="flex flex-wrap justify-center gap-5">
+                {row.map(({ name, role, photo }, index) => (
+                  <Reveal
+                    key={`${name}-${rowIndex}-${index}`}
+                    className="group card card-glass leadership-card relative w-full overflow-hidden before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:z-10 before:h-px before:bg-white/90 after:pointer-events-none after:absolute after:inset-0 after:z-10 after:bg-gradient-to-br after:from-white/18 after:via-transparent after:to-white/8 sm:flex-[0_0_calc((100%_-_20px)/2)] lg:flex-[0_0_calc((100%_-_60px)/4)]"
+                  >
+                    {photo
+                      ? (
+                        <div className="relative h-[24.5rem] overflow-hidden bg-white/25">
+                          <img
+                            src={photo}
+                            alt={name}
+                            className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
+                          />
+                        </div>
+                      )
+                      : <div className="flex h-[24.5rem] items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400 text-sm font-bold">Photo N/A</div>
+                    }
+                    <div className="leadership-info absolute inset-x-0 bottom-0 z-20 p-6">
+                      <h3 className="font-black text-[var(--navy)]">{name}</h3>
+                      <p className="mt-2 text-sm font-semibold text-slate-700">{role}</p>
                     </div>
-                  )
-                  : <div className="flex h-[24.5rem] items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400 text-sm font-bold">Photo N/A</div>
-                }
-                <div className="leadership-info absolute inset-x-0 bottom-0 z-20 p-6">
-                  <h3 className="font-black text-[var(--navy)]">{name}</h3>
-                  <p className="mt-2 text-sm font-semibold text-slate-700">{role}</p>
-                </div>
-              </Reveal>
+                  </Reveal>
+                ))}
+              </div>
             ))}
           </div>
         </div>
