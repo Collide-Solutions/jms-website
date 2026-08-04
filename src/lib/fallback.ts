@@ -207,7 +207,7 @@ export const fallbackReachUsPageData: ReachUsPageData = {
   reach_hero_title: "Start an RFQ conversation.",
   reach_hero_text: "Connect with JMS for turnkey retail execution, facade, furniture, signage, and rollout programs.",
   reach_hero_image: { url: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=80", alt: "" },
-  contact_email: "jatinshroff@jmsuniversal.com",
+  contact_email: "jatin.shroff@jmsuniversal.com",
   contact_address: "Suite No. 1207–1208, Hubtown Solaris One, Andheri East, Opp. Telli Gully, Mumbai – 400069",
   factory_description: "60,000 sq.ft production area with in-house fabrication and logistics",
 };

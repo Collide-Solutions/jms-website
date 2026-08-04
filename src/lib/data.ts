@@ -118,6 +118,6 @@ export const indiaRegions = [
 ];
 
 export const contactInfo = {
-  email: "jatinshroff@jmsuniversal.com",
+  email: "jatin.shroff@jmsuniversal.com",
   address: "Suite No. 1207–1208, Hubtown Solaris One, Andheri East, Opp. Telli Gully, Mumbai – 400069",
 };
