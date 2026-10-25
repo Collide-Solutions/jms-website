@@ -35,14 +35,23 @@ export default async function ReachUsPage() {
             </div>
             <div className="card p-7">
               <MapPin className="mb-6 text-[var(--blue)]" size={24} />
-              <h3 className="text-2xl font-black text-[var(--navy)]">Factory</h3>
+              <h3 className="text-2xl font-black text-[var(--navy)]">Factory Units</h3>
               <p className="mt-3 leading-7 text-slate-600">{data.factory_description}</p>
+              <div className="mt-6 space-y-5 border-t border-[var(--border)] pt-5">
+                {data.factory_units.map((unit) => (
+                  <div key={unit.name}>
+                    <p className="font-black uppercase tracking-[0.12em] text-[var(--navy)]">{unit.name}</p>
+                    <p className="mt-1 text-sm leading-6 text-slate-600">{unit.address}</p>
+                  </div>
+                ))}
+              </div>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="card p-6 transition hover:border-[var(--blue)]/30">
                 <Phone className="mb-3 text-[var(--blue)]" size={20} />
                 <p className="font-black text-[var(--navy)]">RFQ Desk</p>
                 <p className="mt-1 text-sm text-slate-500">Project Enquiries</p>
+                <a href="tel:+919167490480" className="mt-1 block text-sm font-semibold text-[var(--blue)] transition hover:underline">+91 91674 90480</a>
               </div>
               <div className="card p-6 transition hover:border-[var(--blue)]/30">
                 <Mail className="mb-3 text-[var(--blue)]" size={20} />

@@ -259,12 +259,14 @@ export type ReachUsPageData = {
   contact_email: string;
   contact_address: string;
   factory_description: string;
+  factory_units: Array<{ name: string; address: string }>;
 };
 
 export async function getReachUsPageData(): Promise<ReachUsPageData> {
   if (!WP_AVAILABLE) return fallbackReachUsPageData;
   try {
-    return (await getSiteSettings<ReachUsPageData>()) ?? fallbackReachUsPageData;
+    const settings = await getSiteSettings<Partial<ReachUsPageData>>();
+    return { ...fallbackReachUsPageData, ...settings, factory_units: settings?.factory_units ?? fallbackReachUsPageData.factory_units };
   } catch {
     return fallbackReachUsPageData;
   }

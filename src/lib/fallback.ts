@@ -210,6 +210,11 @@ export const fallbackReachUsPageData: ReachUsPageData = {
   contact_email: "jatin.shroff@jmsuniversal.com",
   contact_address: "Suite No. 1207–1208, Hubtown Solaris One, Andheri East, Opp. Telli Gully, Mumbai – 400069",
   factory_description: "60,000 sq.ft production area with in-house fabrication and logistics",
+  factory_units: [
+    { name: "Unit 01", address: "Plot No. 6, Survey No. 259/1/1, Navnit Shah Industrial Estate, Demni RD, Dadra, Dadra & Nagar Haveli – 396230, INDIA" },
+    { name: "Unit 02", address: "JMS UNIVERSAL TECHNOLOGIES PRIVATE LIMITED, Plot No. DG-22, Garment Zone GIDC Dungra, Taluka: Vapi, Dist: Valsad" },
+    { name: "Unit 03", address: "No. 259/1/1, Plot No. 03, Navnit Shah Industrial Estate, Dadra, Dadra & Nagar Haveli – 396230, INDIA" },
+  ],
 };
 
 export const fallbackBlogs: Blog[] = [
