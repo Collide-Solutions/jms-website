@@ -73,7 +73,7 @@ export const portfolio: PortfolioCategory[] = [
   {
     name: "Turnkey Project",
     projects: [
-      project("Voltas Experience Centre, Prabhadevi", "turnkey-prabhadevi", [
+      project("Voltas Experience Centre, Mumbai", "turnkey-prabhadevi", [
         "voltas-experience-centre-showroom",
         "voltas-customer-lounge",
         "voltas-smart-home-display",
