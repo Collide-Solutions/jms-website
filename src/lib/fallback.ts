@@ -51,8 +51,8 @@ export const fallbackHomePageData: HomePageData = {
 
 export const fallbackLeaders: Leader[] = [
   { name: "Mr. Manmohan Singh Toor", role: "Managing Director", photo: "/FIRM/LEADERSHIP/Manmohan Singh Toor.jpg" },
-  { name: "Harveen Toor", role: "Director", photo: null },
-  { name: "Gurveen Toor", role: "Executive Director", photo: null },
+  { name: "Ms. Harveen Toor", role: "Director", photo: null },
+  { name: "Ms. Gurveen Toor", role: "Executive Director", photo: null },
   { name: "Mr. Subramanian Venkata", role: "CEO", photo: "/FIRM/LEADERSHIP/Subramanian Venata.jpg" },
   { name: "Mr. Jigar Kothari", role: "Country Head", photo: "/FIRM/LEADERSHIP/Jiggar Kothari.png" },
   { name: "Mr. Jatin Malhotra", role: "Finance Controller", photo: "/FIRM/LEADERSHIP/Jatin Malhotra.jpeg" },

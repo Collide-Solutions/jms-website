@@ -23,8 +23,8 @@ const leadershipOrder = [
   "manmohan",
   "harveen",
   "gurveen",
+  "jig",
   "subramanian",
-  "jigar",
   "jatin malhotra",
   "jatin sharof",
   "manoj",
@@ -37,6 +37,14 @@ const getLeadershipOrder = (name: string) => {
   const normalizedName = name.toLowerCase();
   const index = leadershipOrder.findIndex((leaderName) => normalizedName.includes(leaderName));
   return index === -1 ? leadershipOrder.length : index;
+};
+
+const getLeadershipDisplayName = (name: string) => {
+  const normalizedName = name.trim().toLowerCase();
+  if (normalizedName === "harveen toor" || normalizedName === "gurveen toor") {
+    return `Ms. ${name.trim()}`;
+  }
+  return name;
 };
 
 type FirmData = {
@@ -84,7 +92,7 @@ export default function FirmClient({
         getLeadershipOrder(a.leader.name) - getLeadershipOrder(b.leader.name) ||
         a.originalIndex - b.originalIndex,
     )
-    .map(({ leader }) => leader);
+    .map(({ leader }) => ({ ...leader, name: getLeadershipDisplayName(leader.name) }));
 
   const displayedLeaders: Leader[] = [
     ...orderedLeaders,
