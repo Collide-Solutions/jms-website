@@ -4,7 +4,6 @@ import type {
   Leader,
   Achievement,
   Facility,
-  Work,
   Testimonial,
   PartnerSector,
   ProcessCard,
@@ -81,19 +80,6 @@ export const fallbackFacilities: Facility[] = [
   { name: "Glass & Aluminum Fabrication", description: "Specialized glass and aluminum fabrication for storefronts and facade systems.", image: "/FIRM/Our Facilities/Glass & Aluminum Fabrication/glass-aluminum.jpg" },
   { name: "Digital & Static Signage", description: "Comprehensive digital and static signage solutions for retail environments.", image: "/FIRM/Our Facilities/Digital & Static Signage/Digital & Static Signage.jpg" },
   { name: "Fixtures Manufacturing", description: "Dedicated fixtures manufacturing line for retail displays and merchandising units.", image: "/FIRM/Our Facilities/Fixtures Manufacturing/fixtures-manufacturing.jpg" },
-];
-
-export const fallbackWorks: Work[] = [
-  { name: "Automobile Furniture", category: "Automobile", image: "/FIRM/Our Works/Automobile Furniture/MP700004.jpg" },
-  { name: "Automobile Showroom Signs & Fit Outs", category: "Automobile", image: "/FIRM/Our Works/Automobile Showroom Signs & Fit Outs/Lexus.jpeg" },
-  { name: "Banks Furniture Branding & Facades", category: "Bank", image: "/FIRM/Our Works/Banks Furniture Branding & Facades/axis-5.jpg" },
-  { name: "Gas Station RVIs", category: "Gas Station", image: "/FIRM/Our Works/Gas Station RVIs/IOCL.jpg" },
-  { name: "Healthcare Furniture Branding & Facades", category: "Healthcare", image: "/FIRM/Our Works/Healthcare Furniture Branding & Facades/Fortis.jpg" },
-  { name: "Hospitality Furniture Branding & Facades", category: "Hospitality", image: "/FIRM/Our Works/Hospitality Furniture Branding & Facades/Ginger.jpg" },
-  { name: "Retail Outlet Facades", category: "Retail", image: "/FIRM/Our Works/Retail Outlet Facades/Westside.jfif" },
-  { name: "Retail Outlet Fixtures", category: "Retail", image: "/FIRM/Our Works/Retail Outlet Fixtures/Zudio.jpg" },
-  { name: "Retail Outlet Furniture", category: "Retail", image: "/FIRM/Our Works/Retail Outlet Furniture/Picture1.jpg" },
-  { name: "Retail Outlet Signage", category: "Retail", image: "/FIRM/Our Works/Retail Outlet Signage/1Q2A8102.jpg.jpeg" },
 ];
 
 export const fallbackFirmPageData: FirmPageData = {

@@ -39,7 +39,7 @@ export async function GET() {
     featuredProjects,
     leaders,
     facilities,
-    works,
+    portfolio,
     partnerSectors,
     processCards,
     resources,
@@ -76,7 +76,10 @@ export async function GET() {
   featuredProjects.forEach((item) => pushAsset(urls, item.img));
   leaders.forEach((item) => pushAsset(urls, item.photo));
   facilities.forEach((item) => pushAsset(urls, item.image));
-  works.forEach((item) => pushAsset(urls, item.image));
+  portfolio.forEach(({ projects }) => {
+    const cover = projects[0]?.photos[0];
+    pushAsset(urls, cover?.thumbnail ?? cover?.image);
+  });
   partnerSectors.forEach((item) => pushAsset(urls, item.img));
   processCards.forEach((item) => pushAsset(urls, item.image));
   blogs.forEach((item) => pushAsset(urls, item.image));

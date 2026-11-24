@@ -5,7 +5,6 @@ import {
   fallbackLeaders,
   fallbackAchievements,
   fallbackFacilities,
-  fallbackWorks,
   fallbackFirmPageData,
   fallbackGreenCommitments,
   fallbackTestimonials,
@@ -19,6 +18,7 @@ import {
   fallbackReachUsPageData,
   fallbackBlogs,
 } from "./fallback";
+import { portfolio, type PortfolioCategory } from "./portfolio";
 
 const WP_BASE = process.env.NEXT_PUBLIC_WP_URL ?? "";
 const API = `${WP_BASE}/wp-json`;
@@ -348,15 +348,53 @@ export async function getFacilities(): Promise<Facility[]> {
 
 // ─── CPT: Work ───────────────────────────────────────────────────────────
 
-export type Work = { name: string; category: string; image: string };
+// Existing WordPress covers represented by the curated gallery, keyed by post ID.
+const importedWorkCovers = new Map([
+  [1205, 1206], [1207, 1398], [1215, 1417], [1216, 1210],
+  [1217, 1211], [1218, 1212], [1219, 793], [1221, 1213],
+  [1222, 1214], [1223, 1224], [1399, 1208], [1418, 1420],
+]);
 
-export async function getWorks(): Promise<Work[]> {
-  if (!WP_AVAILABLE) return fallbackWorks;
+type WorkPost = {
+  id: number;
+  acf?: {
+    name?: string;
+    category?: string;
+    image?: (WpImage & { id?: number }) | false;
+  };
+};
+
+export async function getWorks(): Promise<PortfolioCategory[]> {
+  if (!WP_AVAILABLE) return portfolio;
   try {
-    const posts = await wpFetch<Array<{ acf: { name: string; category: string; image: WpImage } }>>("/wp/v2/work?per_page=50&order=asc&orderby=menu_order&_fields=acf&acf_format=standard");
-    return posts.map((p) => ({ name: p.acf.name, category: p.acf.category, image: p.acf.image.url }));
+    const posts = await wpFetch<WorkPost[]>("/wp/v2/work?per_page=100&order=asc&orderby=menu_order&_fields=id,acf&acf_format=standard");
+    const categories = structuredClone(portfolio);
+    for (const { id, acf } of posts) {
+      const categoryName = acf?.category?.trim();
+      const projectName = acf?.name?.trim();
+      const image = acf?.image;
+      if (!categoryName || !projectName || !image || !image.url) continue;
+      if (image.id !== undefined && image.id === importedWorkCovers.get(id)) continue;
+
+      const categoryKey = categoryName.toLowerCase();
+      if (categoryKey === "bank" || categoryKey === "banks") continue;
+      let category = categories.find(({ name }) => name.toLowerCase() === categoryKey);
+      if (!category) {
+        category = { name: categoryName, projects: [] };
+        categories.push(category);
+      }
+      let project = category.projects.find(({ name }) => name.toLowerCase() === projectName.toLowerCase());
+      if (!project) {
+        project = { name: projectName, photos: [] };
+        category.projects.push(project);
+      }
+      if (!project.photos.some((photo) => photo.image === image.url)) {
+        project.photos.push({ image: image.url, alt: image.alt?.trim() || projectName });
+      }
+    }
+    return categories;
   } catch {
-    return fallbackWorks;
+    return portfolio;
   }
 }
 

@@ -11,7 +11,7 @@ import {
 import FirmClient from "./FirmClient";
 
 export default async function FirmPage() {
-  const [firm, leaders, achievements, facilities, works] = await Promise.all([
+  const [firm, leaders, achievements, facilities, portfolio] = await Promise.all([
     getFirmPageData(),
     getLeaders(),
     getAchievements(),
@@ -33,7 +33,7 @@ export default async function FirmPage() {
       leaders={leaders}
       achievements={achievements}
       facilities={facilities}
-      works={works}
+      portfolio={portfolio}
       peoplePrograms={parsePairs(firm.people_programs ?? "")}
       coreValues={parseLines(firm.core_values ?? "")}
       insights={parseLines(firm.insights_jms ?? "")}
