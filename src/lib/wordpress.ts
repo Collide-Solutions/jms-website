@@ -305,17 +305,22 @@ export async function getFeaturedProjects(): Promise<FeaturedProject[]> {
 export type Leader = { name: string; role: string; photo: string | null };
 
 export async function getLeaders(): Promise<Leader[]> {
-  if (!WP_AVAILABLE) return fallbackLeaders;
-  try {
-    const posts = await wpFetch<Array<{ acf: { name: string; role: string; photo: WpImage | false } }>>("/wp/v2/leader?per_page=20&order=asc&orderby=menu_order&_fields=acf&acf_format=standard");
-    return posts.map((p) => ({
-      name: p.acf.name,
-      role: p.acf.role,
-      photo: p.acf.photo ? p.acf.photo.url : null,
-    }));
-  } catch {
-    return fallbackLeaders;
+  let leaders = fallbackLeaders;
+  if (WP_AVAILABLE) {
+    try {
+      const posts = await wpFetch<Array<{ acf: { name: string; role: string; photo: WpImage | false } }>>("/wp/v2/leader?per_page=20&order=asc&orderby=menu_order&_fields=acf&acf_format=standard");
+      leaders = posts.map((p) => ({
+        name: p.acf.name,
+        role: p.acf.role,
+        photo: p.acf.photo ? p.acf.photo.url : null,
+      }));
+    } catch {
+      // Use the fallback roster when WordPress is unavailable.
+    }
   }
+
+  // Temporarily hide this card from the grid and its photo from preloading.
+  return leaders.filter(({ name }) => !name.toLowerCase().includes("subramanian"));
 }
 
 // ─── CPT: Achievement ────────────────────────────────────────────────────

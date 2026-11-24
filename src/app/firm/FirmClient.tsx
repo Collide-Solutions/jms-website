@@ -17,14 +17,13 @@ const capacityIcons = [
   Building2, Sofa, Store, PanelsTopLeft,
 ];
 
-const leadershipSlotCount = 11;
+const leadershipSlotCount = 10;
 
 const leadershipOrder = [
   "manmohan",
   "harveen",
   "gurveen",
   "jig",
-  "subramanian",
   "jatin malhotra",
   "jatin sharof",
   "manoj",
@@ -108,11 +107,12 @@ export default function FirmClient({
 
   const leadershipRows = [
     displayedLeaders.slice(0, 3),
+    displayedLeaders.slice(3, 6),
     ...Array.from(
-      { length: Math.ceil(Math.max(displayedLeaders.length - 3, 0) / 4) },
-      (_, index) => displayedLeaders.slice(3 + index * 4, 7 + index * 4),
+      { length: Math.ceil((displayedLeaders.length - 6) / 4) },
+      (_, index) => displayedLeaders.slice(6 + index * 4, 10 + index * 4),
     ),
-  ].filter((row) => row.length > 0);
+  ];
 
   const toggleRow = (rowIndex: number) => {
     setExpandedRows((prev) => ({
